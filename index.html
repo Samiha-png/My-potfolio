@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samiha Khan | Software Engineer & Designer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        :root { 
+            --bg: #060d0a; 
+            --accent: #fbbf24; 
+            --emerald-glow: #059669;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: #94a3b8; overflow-x: hidden; }
+        
+        .mesh-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: 
+                radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.12) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, rgba(251, 191, 36, 0.08) 0, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(5, 150, 105, 0.08) 0, transparent 50%),
+                radial-gradient(at 0% 100%, rgba(217, 119, 6, 0.05) 0, transparent 50%);
+        }
+
+        .bento-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 2rem;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .bento-card:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(251, 191, 36, 0.3);
+            transform: scale(1.02);
+        }
+
+        .section-divider {
+            height: 1px; width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.2), transparent);
+            margin: 4rem 0; position: relative;
+        }
+        .section-divider::after {
+            content: ''; position: absolute; top: -1px; left: 0; width: 20px; height: 3px;
+            background: var(--accent); filter: blur(4px);
+            animation: move-light 8s linear infinite;
+        }
+
+        @keyframes move-light {
+            0% { left: 0%; opacity: 0; }
+            50% { opacity: 1; }
+            100% { left: 100%; opacity: 0; }
+        }
+
+        .nav-link { position: relative; transition: color 0.3s; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
+            background: var(--accent); transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active-link { color: white; }
+        .nav-link.active-link::after { width: 100%; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .float-anim { animation: float 4s ease-in-out infinite; }
+
+        /* Modal specific styling */
+        #projectModal.active { display: flex; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body>
+
+    <div class="mesh-bg"></div>
+
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl">
+        <div class="glass px-8 py-4 rounded-full border border-white/10 bg-black/20 backdrop-blur-xl flex justify-between items-center">
+            <div class="text-white font-black tracking-tighter text-xl">SAMIHA<span class="text-amber-500 italic">Khan</span></div>
+            <div class="hidden md:flex gap-8 text-xs font-bold uppercase tracking-widest text-slate-400">
+                <a href="#about" class="nav-link">Bio</a>
+                <a href="#projects" class="nav-link">Works</a>
+                <a href="#stack" class="nav-link">Stack</a>
+            </div>
+            <a href="mailto:samihakhan569@gmail.com" class="px-5 py-2 bg-amber-500 text-black rounded-full text-xs font-bold hover:bg-amber-400 transition shadow-lg shadow-amber-500/20">Let's Talk</a>
+        </div>
+    </nav>
+
+    <section id="about" class="pt-60 pb-32 px-6">
+        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-6xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-8">
+                    FULL <br> <span class="text-amber-500">STACK</span> DEV<span class="text-amber-500">.</span>
+                </h1>
+                <p class="text-xl text-slate-400 leading-relaxed mb-10 max-w-lg">
+                    Software Engineer specializing in **Enterprise Solutions**. Experienced in building robust backends with **Laravel & .NET Core**, paired with high-performance frontends using **Angular**.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#projects" class="px-8 py-4 bg-white text-black rounded-2xl font-bold hover:bg-amber-500 hover:text-white transition">Explore Projects</a>
+                    <div class="p-4 bento-card border-white/5 flex items-center gap-3">
+                        <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                        <span class="text-xs font-bold text-white uppercase tracking-widest">Open for Roles</span>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bento-card p-8 float-anim">
+                    <span class="text-3xl font-bold text-white block mb-2">.NET</span>
+                    <span class="text-xs uppercase tracking-widest font-bold text-blue-400">Enterprise C#</span>
+                </div>
+                <div class="bento-card p-8 float-anim" style="animation-delay: 1s;">
+                    <span class="text-3xl font-bold text-white block mb-2">Angular</span>
+                    <span class="text-xs uppercase tracking-widest font-bold text-red-500">SPA Framework</span>
+                </div>
+                <div class="bento-card p-8 col-span-2 text-center">
+                    <div class="flex justify-center gap-6 mb-2 text-white font-bold text-xl">
+                        <span>ASP.NET</span> <span class="text-amber-500">+</span> <span>Laravel</span>
+                    </div>
+                    <span class="text-xs uppercase tracking-widest font-bold text-slate-500 italic">Backend Mastery</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <section id="projects" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-sm font-bold text-amber-500 uppercase tracking-[0.3em] mb-12 text-center">Selected Works (Click to View)</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bento-card p-10 md:col-span-2 group cursor-pointer" onclick="openModal('networking')">
+                    <div class="flex justify-between items-start mb-12">
+                        <span class="px-4 py-1 rounded-full border border-amber-500/30 text-amber-500 text-[10px] font-bold uppercase italic">Interactive Detail</span>
+                        <span class="text-slate-500 group-hover:text-white transition">Details ↗</span>
+                    </div>
+                    <h3 class="text-4xl font-black text-white mb-4">Networking System</h3>
+                    <p class="text-slate-400 max-w-md mb-8">Secure infrastructure for profile management and real-time connectivity with complex MySQL relationships.</p>
+                    <div class="flex gap-2 text-[10px] font-bold text-slate-500 uppercase">
+                        <span>#Authentication</span> <span>•</span> <span>#Middleware</span> 
+                    </div>
+                </div>
+
+                <div class="bento-card p-10 bg-amber-600/5 border-amber-500/20 cursor-pointer" onclick="openModal('restaurant')">
+                    <h3 class="text-2xl font-black text-white mb-4">Restaurant Web App</h3>
+                    <p class="text-sm text-slate-400 mb-6">Management system with admin dashboard and full CRUD logic for menu items.</p>
+                    <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden">
+                        <div class="w-[100%] h-full bg-amber-500"></div>
+                    </div>
+                    <span class="text-[10px] font-bold mt-2 block text-amber-500 uppercase italic">View Architecture</span> 
+                </div>
+
+                <div class="bento-card p-10 bg-emerald-600/5 border-emerald-500/20 cursor-pointer" onclick="openModal('himaglow')">
+                    <h3 class="text-2xl font-black text-white mb-4">HimaGlow Brand</h3>
+                    <p class="text-sm text-slate-400 mb-6">Dynamic Laravel-based web app for Himalayan Salt products featuring auth and DB relations.</p>
+                    <span class="px-3 py-1 rounded-md bg-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase">Click for Details</span> 
+                </div>
+
+                <div class="bento-card p-10 md:col-span-2 flex flex-col md:flex-row gap-8 items-center justify-between cursor-pointer" onclick="openModal('apis')">
+                    <div>
+                        <h3 class="text-3xl font-black text-white mb-4">RESTful APIs</h3>
+                        <p class="text-slate-400 text-sm max-w-sm">Laravel & .NET API development with JWT/Sanctum authentication and Postman testing.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-2 w-full md:w-auto">
+                        <div class="p-3 bg-white/5 rounded-xl text-center text-[10px] font-bold text-white">GET</div>
+                        <div class="p-3 bg-amber-500/10 rounded-xl text-center text-[10px] font-bold text-amber-500">POST</div>
+                        <div class="p-3 bg-emerald-500/10 rounded-xl text-center text-[10px] font-bold text-emerald-500">PUT</div>
+                        <div class="p-3 bg-red-500/10 rounded-xl text-center text-[10px] font-bold text-red-400">DELETE</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="projectModal" class="fixed inset-0 z-[100] hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bento-card max-w-2xl w-full p-8 md:p-12 relative border-amber-500/20 overflow-y-auto max-h-[90vh]">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-slate-500 hover:text-white transition">
+                <i class="fa-solid fa-xmark text-2xl"></i>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <section id="stack" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-sm font-bold text-amber-500 uppercase tracking-[0.3em] mb-16">Technical Ecosystem</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+                <div class="bento-card p-6 group"><i class="fa-brands fa-laravel text-red-500 text-3xl mb-4 block"></i><h4 class="text-white text-xs font-bold">Laravel</h4></div>
+                <div class="bento-card p-6 group"><i class="fa-solid fa-gem text-purple-500 text-3xl mb-4 block"></i><h4 class="text-white text-xs font-bold">.NET Core</h4></div>
+                <div class="bento-card p-6 group"><i class="fa-brands fa-angular text-red-600 text-3xl mb-4 block"></i><h4 class="text-white text-xs font-bold">Angular</h4></div>
+                <div class="bento-card p-6 group"><i class="fa-solid fa-database text-blue-400 text-3xl mb-4 block"></i><h4 class="text-white text-xs font-bold">SQL Server</h4></div>
+                <div class="bento-card p-6 group"><i class="fa-brands fa-js text-amber-500 text-3xl mb-4 block"></i><h4 class="text-white text-xs font-bold">JavaScript</h4></div>
+                <div class="bento-card p-6 group"><i class="fa-solid fa-vial-circle-check text-emerald-500 text-3xl mb-4 block"></i><h4 class="text-white text-xs font-bold">Postman</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 px-6 border-t border-white/5 bg-black/20">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="text-center md:text-left">
+                <div class="text-white font-black tracking-tighter text-xl uppercase">SAMIHA<span class="text-amber-500 italic">Khan</span></div>
+                <p class="text-xs text-slate-500 mt-2 italic">Fluent in English, Urdu, and Spanish (Beginner)</p>
+                <div class="flex items-center gap-4 mt-4 text-xs font-bold text-amber-500 justify-center md:justify-start">
+                    <span><i class="fa-solid fa-phone mr-1"></i> 0319-8397696</span>
+                    <span><i class="fa-solid fa-location-dot mr-1"></i> Karachi, PK</span>
+                </div>
+            </div>
+            <div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
+                <a href="https://github.com/Samiha-png" target="_blank" class="hover:text-white">GitHub</a>
+                <a href="https://linkedin.com/in/samiha-khan-b606a12ba" target="_blank" class="hover:text-white">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Modal Data
+        const projectData = {
+            networking: {
+                title: "Networking System",
+                subtitle: "Laravel & MySQL Backend",
+                desc: "A secure infrastructure platform designed for professional profile management and networking. I implemented custom middleware for security and optimized relational database queries for high performance.",
+                stack: ["Laravel 10", "MySQL", "C#", "Custom Middleware"],
+                role: "Lead Developer"
+            },
+            restaurant: {
+                title: "Restaurant App",
+                subtitle: "Full-Stack Management System",
+                desc: "A comprehensive solution for restaurant owners including an admin dashboard, real-time order tracking, and full CRUD operations for menu management. Focused on seamless UI and secure checkout logic.",
+                stack: ["Laravel", "Angular", "Bootstrap", "MySQL"],
+                role: "Full Stack Engineer"
+            },
+            himaglow: {
+                title: "HimaGlow Brand",
+                subtitle: "E-Commerce Identity",
+                desc: "Built a dynamic web presence for HimaGlow pink salt products. Integrated secure user authentication and a custom inventory management system for Himalayan salt items.",
+                stack: ["Laravel", "Tailwind CSS", "MySQL"],
+                role: "Designer & Dev"
+            },
+            apis: {
+                title: "RESTful APIs",
+                subtitle: "Enterprise Data Endpoints",
+                desc: "Developed high-performance REST APIs using Laravel Sanctum and .NET Core. Tested extensively with Postman to ensure secure data flow and 99.9% uptime for client-side consumption.",
+                stack: ["PHP", "C#", "Postman", "JWT"],
+                role: "API Specialist"
+            }
+        };
+
+function openModal(id) {
+    const data = projectData[id];
+    const content = document.getElementById('modalContent');
+    
+    // Yahan maine colors ko 'amber' se 'emerald' (Greenish) mein change kiya hai
+    content.innerHTML = `
+        <span class="text-emerald-400 font-bold uppercase tracking-widest text-[10px] mb-2 block">${data.subtitle}</span>
+        <h2 class="text-4xl font-black text-white mb-6 uppercase tracking-tighter">${data.title}</h2>
+        <p class="text-slate-400 text-lg leading-relaxed mb-8">${data.desc}</p>
+        <div class="grid md:grid-cols-2 gap-8 mb-8">
+            <div>
+                <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-3">Stack</h4>
+                <div class="flex flex-wrap gap-2">
+                    ${data.stack.map(s => `<span class="px-2 py-1 bg-white/5 rounded text-[10px] text-slate-300 border border-emerald-500/20">${s}</span>`).join('')}
+                </div>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-xs uppercase tracking-widest mb-3">Role</h4>
+                <p class="text-emerald-400 font-bold text-sm">${data.role}</p>
+            </div>
+        </div>
+        <a href="https://github.com/Samiha-png" target="_blank" class="inline-block w-full text-center px-8 py-4 bg-emerald-500 text-black rounded-2xl font-bold hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/20">View Source Code</a>
+    `;
+    document.getElementById('projectModal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on outside click
+        window.onclick = (e) => { if(e.target.id === 'projectModal') closeModal(); }
+
+        // Smooth Scroll & Active Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            let current = "";
+            document.querySelectorAll("section").forEach(s => { if(pageYOffset >= s.offsetTop - 120) current = s.getAttribute("id"); });
+            document.querySelectorAll(".nav-link").forEach(l => {
+                l.classList.remove("active-link");
+                if(l.getAttribute("href").includes(current)) l.classList.add("active-link");
+            });
+        });
+    </script>
+</body>
+</html>
