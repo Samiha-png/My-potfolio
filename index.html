@@ -2,338 +2,342 @@
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Samiha Khan | Software Engineer & Designer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Samiha Khan | Full-Stack Software Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         :root { 
-            --bg: #060d0a; 
+            --bg: #020617; 
             --accent: #fbbf24; 
-            --emerald-glow: #059669;
+            --card-bg: rgba(15, 23, 42, 0.4);
+            --border: rgba(255, 255, 255, 0.08);
         }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--bg); color: #94a3b8; overflow-x: hidden; }
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: var(--bg); 
+            color: #94a3b8;
+            letter-spacing: -0.01em;
+        }
+        .mono { font-family: 'JetBrains Mono', monospace; }
         
-        .mesh-bg {
+        .glass-mesh {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
             background: 
-                radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.12) 0, transparent 50%), 
-                radial-gradient(at 100% 0%, rgba(251, 191, 36, 0.08) 0, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(5, 150, 105, 0.08) 0, transparent 50%),
-                radial-gradient(at 0% 100%, rgba(217, 119, 6, 0.05) 0, transparent 50%);
+                radial-gradient(circle at 0% 0%, rgba(251, 191, 36, 0.05) 0%, transparent 30%),
+                radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.05) 0%, transparent 30%),
+                #020617;
         }
 
         .bento-card {
-            background: rgba(255, 255, 255, 0.01);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border-radius: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        @media (min-width: 768px) {
-            .bento-card { border-radius: 2rem; }
-            .bento-card:hover {
-                background: rgba(255, 255, 255, 0.03);
-                border-color: rgba(251, 191, 36, 0.3);
-                transform: scale(1.02);
-            }
+        .bento-card:hover {
+            border-color: rgba(251, 191, 36, 0.3);
+            background: rgba(15, 23, 42, 0.8);
+            transform: translateY(-5px);
         }
 
-        .section-divider {
-            height: 1px; width: 100%;
-            background: linear-gradient(90deg, transparent, rgba(251, 191, 36, 0.2), transparent);
-            margin: 2rem 0; position: relative;
-        }
-        @media (min-width: 768px) { .section-divider { margin: 4rem 0; } }
-
-        .section-divider::after {
-            content: ''; position: absolute; top: -1px; left: 0; width: 20px; height: 3px;
-            background: var(--accent); filter: blur(4px);
-            animation: move-light 8s linear infinite;
-        }
-
-        @keyframes move-light {
-            0% { left: 0%; opacity: 0; }
-            50% { opacity: 1; }
-            100% { left: 100%; opacity: 0; }
+        .btn-primary {
+            background: #fff;
+            color: #000;
+            padding: 1rem 2.5rem;
+            border-radius: 1.25rem;
+            font-weight: 800;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .nav-link { position: relative; transition: color 0.3s; }
-        .nav-link::after {
-            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px;
-            background: var(--accent); transition: width 0.3s;
+        .btn-primary:hover {
+            background: var(--accent);
+            transform: scale(1.02) translateY(-2px);
+            box-shadow: 0 20px 40px -10px rgba(251, 191, 36, 0.3);
         }
-        .nav-link:hover::after { width: 100%; }
-        .nav-link.active-link { color: white; }
-        .nav-link.active-link::after { width: 100%; }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        .skill-node {
+            padding: 0.5rem 1rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            font-size: 0.85rem;
+            color: #f8fafc;
         }
-        .float-anim { animation: float 4s ease-in-out infinite; }
 
-        #projectModal.active { display: flex; animation: fadeIn 0.3s ease-out; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-        /* Mobile menu transitions */
-#mobileMenu {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    transform: translateY(-10px);
-    opacity: 0;
-    pointer-events: none;
-}
-#mobileMenu.active {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: all;
-}
-
+        @keyframes pulse-border {
+            0% { border-color: rgba(251, 191, 36, 0.1); }
+            50% { border-color: rgba(251, 191, 36, 0.5); }
+            100% { border-color: rgba(251, 191, 36, 0.1); }
+        }
+        .active-project { animation: pulse-border 3s infinite; }
     </style>
 </head>
 <body>
 
-    <div class="mesh-bg"></div>
+    <div class="glass-mesh"></div>
 
-<nav class="fixed top-4 md:top-6 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-4xl">
-    <div class="glass px-4 md:px-8 py-3 md:py-4 rounded-full border border-white/10 bg-black/40 backdrop-blur-xl flex justify-between items-center relative">
-        <div class="text-white font-black tracking-tighter text-lg md:text-xl shrink-0">SAMIHA<span class="text-amber-500 italic">Khan</span></div>
-        
-        <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-            <a href="#about" class="nav-link">Bio</a>
-            <a href="#projects" class="nav-link">Works</a>
-            <a href="#stack" class="nav-link">Stack</a>
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-6xl">
+        <div class="px-8 py-4 rounded-[2rem] border border-white/5 bg-black/60 backdrop-blur-xl flex justify-between items-center shadow-2xl">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center font-black text-black text-xl shadow-lg shadow-amber-500/20">S</div>
+                <div class="hidden sm:block">
+                    <span class="text-white font-bold tracking-tight block leading-none uppercase">Samiha Khan</span>
+                    <span class="text-[9px] text-amber-500 font-bold tracking-[0.2em] uppercase">Software Engineer</span>
+                </div>
+            </div>
+            <div class="flex gap-6 md:gap-10 text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400">
+                <a href="#about" class="hover:text-amber-500 transition">Stack</a>
+                <a href="#projects" class="hover:text-amber-500 transition">Portfolio</a>
+                <a href="mailto:samihakhan569@gmail.com" class="px-5 py-2.5 bg-white/5 border border-white/10 rounded-full text-white hover:bg-white hover:text-black transition">Hire Me</a>
+            </div>
         </div>
+    </nav>
 
-        <div class="flex items-center gap-3">
-            <a href="mailto:samihakhan569@gmail.com" class="px-4 py-2 bg-amber-500 text-black rounded-full text-[10px] md:text-xs font-bold hover:bg-amber-400 transition shadow-lg shadow-amber-500/20">Let's Talk</a>
-            
-            <button onclick="toggleMenu()" class="md:hidden text-white p-2">
-                <i class="fa-solid fa-bars-staggered text-lg"></i>
-            </button>
-        </div>
-
-        <div id="mobileMenu" class="absolute top-full left-0 right-0 mt-4 p-6 bento-card bg-black/90 border-white/10 md:hidden flex flex-col gap-6 text-center shadow-2xl">
-            <a href="#about" onclick="toggleMenu()" class="text-xs font-bold uppercase tracking-widest text-white">Bio</a>
-            <a href="#projects" onclick="toggleMenu()" class="text-xs font-bold uppercase tracking-widest text-white">Works</a>
-            <a href="#stack" onclick="toggleMenu()" class="text-xs font-bold uppercase tracking-widest text-white">Stack</a>
-        </div>
-    </div>
-</nav>
-
-    <section id="about" class="pt-32 md:pt-60 pb-16 md:pb-32 px-6">
-        <div class="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center text-center lg:text-left">
-            <div class="order-1 lg:order-1">
-                <h1 class="text-5xl md:text-8xl font-black text-white leading-[0.9] tracking-tighter mb-6 md:mb-8">
-                    FULL <br> <span class="text-amber-500">STACK</span> DEV<span class="text-amber-500">.</span>
+    <section id="about" class="pt-56 pb-24 px-6 max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-12 gap-16 items-start">
+            <div class="lg:col-span-7">
+                <div class="inline-flex items-center gap-3 px-4 py-2 bg-amber-500/5 border border-amber-500/20 text-amber-500 text-[11px] font-bold uppercase tracking-widest rounded-full mb-8">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+                    </span>
+                    Available for Laravel & .NET Roles
+                </div>
+                <h1 class="text-6xl md:text-8xl font-black text-white leading-[0.85] tracking-tighter mb-10">
+                    Engineering <br><span class="text-amber-500">Robust</span> Systems.
                 </h1>
-                <p class="text-base md:text-xl text-slate-400 leading-relaxed mb-8 md:mb-10 max-w-lg mx-auto lg:mx-0">
-                    Software Engineer specializing in **Enterprise Solutions**. Experienced in building robust backends with **Laravel & .NET Core**, paired with high-performance frontends using **Angular**.
+                <p class="text-xl text-slate-400 max-w-xl mb-12 leading-relaxed">
+                    Junior Full-Stack Developer [cite: 1, 15] focused on building scalable backends with <strong>Laravel</strong> and <strong>.NET Core</strong>. Currently pursuing <strong>ADP in Software Engineering</strong> at APTECH.
                 </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                    <a href="#projects" class="px-8 py-4 bg-white text-black rounded-2xl font-bold hover:bg-amber-500 hover:text-white transition text-sm">Explore Projects</a>
-                    <div class="p-4 bento-card border-white/5 flex items-center justify-center gap-3">
-                        <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                        <span class="text-[10px] font-bold text-white uppercase tracking-widest">Open for Roles</span>
+                <div class="flex flex-wrap gap-6">
+                    <a href="#projects" class="btn-primary uppercase tracking-tighter">View Projects <i class="fa-solid fa-chevron-right text-xs"></i></a>
+                    <div class="flex items-center gap-4 px-6 py-4 rounded-2xl border border-white/5 bg-white/5">
+                        <a href="https://github.com/Samiha-png" class="text-white hover:text-amber-500 transition text-2xl"><i class="fa-brands fa-github"></i></a>
+                        <div class="h-6 w-[1px] bg-white/10"></div>
+                        <a href="https://linkedin.com/in/samiha-khan-b606a12ba" class="text-white hover:text-amber-500 transition text-2xl"><i class="fa-brands fa-linkedin-in"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-2 gap-4 order-2 mt-8 lg:mt-0">
-                <div class="bento-card p-6 md:p-8 float-anim">
-                    <span class="text-2xl md:text-3xl font-bold text-white block mb-2">.NET</span>
-                    <span class="text-[10px] uppercase tracking-widest font-bold text-blue-400">Enterprise C#</span>
-                </div>
-                <div class="bento-card p-6 md:p-8 float-anim" style="animation-delay: 1s;">
-                    <span class="text-2xl md:text-3xl font-bold text-white block mb-2">Angular</span>
-                    <span class="text-[10px] uppercase tracking-widest font-bold text-red-500">SPA Framework</span>
-                </div>
-                <div class="bento-card p-6 md:p-8 col-span-2 text-center">
-                    <div class="flex justify-center gap-4 md:gap-6 mb-2 text-white font-bold text-lg md:text-xl">
-                        <span>ASP.NET</span> <span class="text-amber-500">+</span> <span>Laravel</span>
-                    </div>
-                    <span class="text-[10px] uppercase tracking-widest font-bold text-slate-500 italic">Backend Mastery</span>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <div class="section-divider"></div>
-
-    <section id="projects" class="py-16 md:py-32 px-6">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="text-[10px] md:text-sm font-bold text-amber-500 uppercase tracking-[0.3em] mb-12 text-center">Selected Works (Click to View)</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="bento-card p-8 md:p-10 md:col-span-2 group cursor-pointer" onclick="openModal('networking')">
-                    <div class="flex justify-between items-start mb-8 md:mb-12">
-                        <span class="px-3 py-1 rounded-full border border-amber-500/30 text-amber-500 text-[9px] font-bold uppercase italic tracking-tighter">Interactive Detail</span>
-                        <span class="text-[10px] text-slate-500 group-hover:text-white transition">Details ↗</span>
-                    </div>
-                    <h3 class="text-3xl md:text-4xl font-black text-white mb-4">Networking System</h3>
-                    <p class="text-sm md:text-base text-slate-400 max-w-md mb-8">Secure infrastructure for profile management and real-time connectivity with complex MySQL relationships.</p>
-                    <div class="flex flex-wrap gap-2 text-[9px] font-bold text-slate-500 uppercase">
-                        <span>#Authentication</span> <span>•</span> <span>#Middleware</span> 
-                    </div>
-                </div>
-
-               <div class="bento-card p-8 md:p-10 bg-amber-600/5 border-amber-500/20 group cursor-pointer" onclick="openModal('restaurant')">
-    <div class="flex justify-between items-start mb-8 md:mb-12">
-        <span class="px-3 py-1 rounded-full border border-amber-500/30 text-amber-500 text-[9px] font-bold uppercase italic tracking-tighter">Full Stack POS</span>
-        <span class="text-[10px] text-slate-500 group-hover:text-white transition">Details ↗</span>
-    </div>
-    <h3 class="text-xl md:text-2xl font-black text-white mb-4">Mad Cheese Terminal</h3>
-    <p class="text-xs md:text-sm text-slate-400 mb-6">A premium management system featuring a "New Chef" registration terminal, real-time menu CRUD, and a high-end admin dashboard.</p>
-    
-    <div class="w-full h-1 bg-white/5 rounded-full overflow-hidden mb-2">
-        <div class="w-[100%] h-full bg-amber-500"></div>
-    </div>
-    <div class="flex justify-between items-center">
-        <span class="text-[9px] font-bold text-amber-500 uppercase italic">Architecture Ready</span>
-        <div class="flex gap-2 text-[8px] font-bold text-slate-500">
-            <span>ANGULAR</span> <span>•</span> <span>.NET</span>
-        </div>
-    </div>
-</div>
-                <div class="bento-card p-8 md:p-10 bg-emerald-600/5 border-emerald-500/20 cursor-pointer" onclick="openModal('himaglow')">
-                    <h3 class="text-xl md:text-2xl font-black text-white mb-4">HimaGlow Brand</h3>
-                    <p class="text-xs md:text-sm text-slate-400 mb-6">Dynamic Laravel-based web app for Himalayan Salt products featuring auth and DB relations.</p>
-                    <span class="px-3 py-1 rounded-md bg-emerald-500/20 text-emerald-400 text-[9px] font-bold uppercase">Click for Details</span> 
-                </div>
-
-                <div class="bento-card p-8 md:p-10 md:col-span-2 flex flex-col md:flex-row gap-8 items-center justify-between cursor-pointer" onclick="openModal('apis')">
-                    <div class="text-center md:text-left w-full">
-                        <h3 class="text-2xl md:text-3xl font-black text-white mb-4">RESTful APIs</h3>
-                        <p class="text-slate-400 text-xs md:text-sm max-w-sm mx-auto md:mx-0">Laravel & .NET API development with JWT/Sanctum authentication and Postman testing.</p>
-                    </div>
-                    <div class="grid grid-cols-2 gap-2 w-full md:w-auto">
-                        <div class="p-2 md:p-3 bg-white/5 rounded-xl text-center text-[9px] font-bold text-white uppercase">GET</div>
-                        <div class="p-2 md:p-3 bg-amber-500/10 rounded-xl text-center text-[9px] font-bold text-amber-500 uppercase">POST</div>
-                        <div class="p-2 md:p-3 bg-emerald-500/10 rounded-xl text-center text-[9px] font-bold text-emerald-500 uppercase">PUT</div>
-                        <div class="p-2 md:p-3 bg-red-500/10 rounded-xl text-center text-[9px] font-bold text-red-400 uppercase">DELETE</div>
+            <div class="lg:col-span-5">
+                <div class="bento-card p-8 active-project">
+                    <h3 class="mono text-amber-500 text-xs font-bold uppercase mb-6 tracking-widest">Tech Stack Matrix</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-500 uppercase mb-3">Backend Core [cite: 1, 24]</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-node">Laravel</span><span class="skill-node">PHP</span><span class="skill-node">.NET Core</span><span class="skill-node">MySQL</span><span class="skill-node">SQL Server</span>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-500 uppercase mb-3">Frontend [cite: 1, 25]</p>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="skill-node">Angular</span><span class="skill-node">JavaScript</span><span class="skill-node">Bootstrap</span><span class="skill-node">Tailwind</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <div id="projectModal" class="fixed inset-0 z-[150] hidden bg-black/95 backdrop-blur-md flex items-center justify-center p-4">
-        <div class="bento-card max-w-2xl w-full p-6 md:p-12 relative border-amber-500/20 overflow-y-auto max-h-[90vh]">
-            <button onclick="closeModal()" class="absolute top-4 right-4 md:top-6 md:right-6 text-slate-500 hover:text-white transition">
-                <i class="fa-solid fa-xmark text-2xl"></i>
+    <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+            <div class="max-w-xl">
+                <h2 class="text-amber-500 font-bold uppercase tracking-[0.4em] text-xs mb-4">Engineering Portfolio</h2>
+                <h3 class="text-5xl md:text-6xl font-black text-white leading-tight">Project Case Studies.</h3>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="group cursor-pointer" onclick="openModal('networking')">
+                <div class="relative overflow-hidden rounded-[3rem] bg-slate-900 border border-white/5 aspect-[16/10] mb-10 transition-all duration-500 hover:border-amber-500/30">
+                    <div class="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-50"></div>
+                    <div class="absolute inset-0 flex items-center justify-center p-20 italic font-black text-white/5 text-8xl">NET</div>
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
+                        <span class="px-8 py-4 bg-white text-black font-black rounded-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform">View Architecture</span>
+                    </div>
+                </div>
+                <div class="px-4">
+                    <div class="flex gap-3 mb-6">
+                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-amber-500">LARAVEL</span>
+                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-slate-300">RELATIONAL DB</span>
+                    </div>
+                    <h4 class="text-4xl font-bold text-white mb-4 tracking-tighter">Networking Platform [cite: 1, 19]</h4>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-6">A secure full-stack platform featuring middleware protection and profile management[cite: 1, 20, 22].</p>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer" onclick="openModal('restaurant')">
+                <div class="relative overflow-hidden rounded-[3rem] bg-slate-900 border border-white/5 aspect-[16/10] mb-10 transition-all duration-500 hover:border-emerald-500/30">
+                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-50"></div>
+                    <div class="absolute inset-0 flex items-center justify-center p-20 italic font-black text-white/5 text-8xl">POS</div>
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
+                        <span class="px-8 py-4 bg-white text-black font-black rounded-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform">Analyze Logic</span>
+                    </div>
+                </div>
+                <div class="px-4">
+                    <div class="flex gap-3 mb-6">
+                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-emerald-500">CRUD</span>
+                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-slate-300">ADMIN PANEL</span>
+                    </div>
+                    <h4 class="text-4xl font-bold text-white mb-4 tracking-tighter">Restaurant Management [cite: 1, 34]</h4>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-6">Complete order system with admin dashboard and validation-ready workflows[cite: 1, 35, 36].</p>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer" onclick="openModal('salt')">
+                <div class="relative overflow-hidden rounded-[3rem] bg-slate-900 border border-white/5 aspect-[16/10] mb-10 transition-all duration-500 hover:border-pink-500/30">
+                    <div class="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-transparent opacity-50"></div>
+                    <div class="absolute inset-0 flex items-center justify-center p-20 italic font-black text-white/5 text-8xl">WEB</div>
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
+                        <span class="px-8 py-4 bg-white text-black font-black rounded-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform">Explore App</span>
+                    </div>
+                </div>
+                <div class="px-4">
+                    <div class="flex gap-3 mb-6">
+                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-pink-500">DYNAMIC</span>
+                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-slate-300">DATABASE RELATIONSHIPS</span>
+                    </div>
+                    <h4 class="text-4xl font-bold text-white mb-4 tracking-tighter">Pink Salt Web App [cite: 1, 38]</h4>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-6">A dynamic Laravel application showcasing complex database relationships and auth[cite: 1, 39, 41].</p>
+                </div>
+            </div>
+
+            <div class="group cursor-pointer" onclick="openModal('api')">
+                <div class="relative overflow-hidden rounded-[3rem] bg-slate-900 border border-white/5 aspect-[16/10] mb-10 transition-all duration-500 hover:border-blue-500/30">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-50"></div>
+                    <div class="absolute inset-0 flex items-center justify-center p-20 italic font-black text-white/5 text-8xl">API</div>
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
+                        <span class="px-8 py-4 bg-white text-black font-black rounded-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform">View API Docs</span>
+                    </div>
+                </div>
+                <div class="px-4">
+                    <div class="flex gap-3 mb-6">
+                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-blue-500">RESTFUL</span>
+                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-slate-300">POSTMAN</span>
+                    </div>
+                    <h4 class="text-4xl font-bold text-white mb-4 tracking-tighter">REST API Project [cite: 1, 43]</h4>
+                    <p class="text-slate-400 text-lg leading-relaxed mb-6">Developed scalable APIs with Laravel, implementing full CRUD and secure auth[cite: 1, 44, 45].</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="projectModal" class="fixed inset-0 z-[200] hidden bg-black/98 backdrop-blur-3xl p-6 overflow-y-auto">
+        <div class="max-w-5xl mx-auto my-12 bg-[#020617] rounded-[3rem] border border-white/10 p-10 md:p-20 relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-10 right-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/5 text-white hover:bg-white hover:text-black transition">
+                <i class="fa-solid fa-xmark text-xl"></i>
             </button>
             <div id="modalContent"></div>
         </div>
     </div>
 
-    <div class="section-divider"></div>
-
-    <section id="stack" class="py-16 md:py-32 px-6">
-        <div class="max-w-6xl mx-auto text-center">
-            <h2 class="text-[10px] md:text-sm font-bold text-amber-500 uppercase tracking-[0.3em] mb-12 md:mb-16">Technical Ecosystem</h2>
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
-                <div class="bento-card p-4 md:p-6 group flex flex-col items-center">
-                    <i class="fa-brands fa-laravel text-red-500 text-2xl md:text-3xl mb-3 md:mb-4 block"></i>
-                    <h4 class="text-white text-[9px] md:text-xs font-bold uppercase tracking-widest">Laravel</h4>
-                </div>
-                <div class="bento-card p-4 md:p-6 group flex flex-col items-center">
-                    <i class="fa-solid fa-gem text-purple-500 text-2xl md:text-3xl mb-3 md:mb-4 block"></i>
-                    <h4 class="text-white text-[9px] md:text-xs font-bold uppercase tracking-widest">.NET Core</h4>
-                </div>
-                <div class="bento-card p-4 md:p-6 group flex flex-col items-center">
-                    <i class="fa-brands fa-angular text-red-600 text-2xl md:text-3xl mb-3 md:mb-4 block"></i>
-                    <h4 class="text-white text-[9px] md:text-xs font-bold uppercase tracking-widest">Angular</h4>
-                </div>
-                <div class="bento-card p-4 md:p-6 group flex flex-col items-center">
-                    <i class="fa-solid fa-database text-blue-400 text-2xl md:text-3xl mb-3 md:mb-4 block"></i>
-                    <h4 class="text-white text-[9px] md:text-xs font-bold uppercase tracking-widest">SQL Server</h4>
-                </div>
-                <div class="bento-card p-4 md:p-6 group flex flex-col items-center">
-                    <i class="fa-brands fa-js text-amber-500 text-2xl md:text-3xl mb-3 md:mb-4 block"></i>
-                    <h4 class="text-white text-[9px] md:text-xs font-bold uppercase tracking-widest">JavaScript</h4>
-                </div>
-                <div class="bento-card p-4 md:p-6 group flex flex-col items-center">
-                    <i class="fa-solid fa-vial-circle-check text-emerald-500 text-2xl md:text-3xl mb-3 md:mb-4 block"></i>
-                    <h4 class="text-white text-[9px] md:text-xs font-bold uppercase tracking-widest">Postman</h4>
+    <footer class="py-24 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
+            <div class="max-w-md">
+                <h2 class="text-3xl font-black text-white mb-6 tracking-tighter uppercase italic">Samiha<span class="text-amber-500">Khan</span></h2>
+                <p class="text-slate-500 text-sm leading-relaxed mb-8">Building scalable digital foundations. [cite: 1, 15] Open for remote software engineering roles and freelance projects.</p>
+                <div class="flex gap-6">
+                    <a href="https://github.com/Samiha-png" class="text-2xl hover:text-amber-500 transition"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://linkedin.com/in/samiha-khan-b606a12ba" class="text-2xl hover:text-amber-500 transition"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="mailto:samihakhan569@gmail.com" class="text-2xl hover:text-amber-500 transition"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://contra.com/samiha_khan_8jrb7mla/work?r=samiha_khan_8jrb7mla" target="_blank" class="text-2xl hover:text-amber-500 transition"><i class="fa-solid fa-bolt"></i></a>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <footer class="py-12 md:py-20 px-6 border-t border-white/5 bg-black/40">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-center md:text-left">
-                <div class="text-white font-black tracking-tighter text-xl uppercase italic">SAMIHA<span class="text-amber-500">Khan</span></div>
-                <p class="text-[10px] text-slate-500 mt-2 italic tracking-wide">Fluent in English, Urdu, and Spanish (Beginner)</p>
-                <div class="flex flex-col sm:flex-row items-center gap-4 mt-4 text-[10px] font-bold text-amber-500 justify-center md:justify-start uppercase tracking-tighter">
-                    <span><i class="fa-solid fa-phone mr-1"></i> 0319-8397696</span>
-                    <span class="hidden sm:inline">•</span>
-                    <span><i class="fa-solid fa-location-dot mr-1"></i> Karachi, PK</span>
-                </div>
-            </div>
-            <div class="flex gap-8 text-[10px] font-bold uppercase tracking-widest text-slate-400">
-                <a href="https://github.com/Samiha-png" target="_blank" class="hover:text-white transition">GitHub</a>
-                <a href="https://linkedin.com/in/samiha-khan-b606a12ba" target="_blank" class="hover:text-white transition">LinkedIn</a>
+            <div>
+                <p class="text-[10px] font-bold text-white uppercase tracking-[0.3em] mb-6">Local Time (Karachi)</p>
+                <p class="text-amber-500 font-bold text-5xl uppercase mono" id="clock">00:00:00</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Modal Data
-        const projectData = {
-            networking: {
-                title: "Networking System",
-                subtitle: "Laravel & MySQL Backend",
-                desc: "A secure infrastructure platform designed for professional profile management and networking. I implemented custom middleware for security and optimized relational database queries for high performance.",
-                stack: ["Laravel 10", "MySQL", "C#", "Custom Middleware"],
-                role: "Lead Developer"
-            },
-           // Modal Data Object mein restaurant section ko aise update karein:
-restaurant: {
-    title: "Mad Cheese Terminal",
-    subtitle: "Angular & .NET Core Suite",
-    desc: "Designed and developed a sophisticated terminal for 'Mad Cheese'. This includes a styled registration system for new chefs, a dynamic menu management engine, and a secure admin interface for operational tracking.",
-    stack: ["Angular 17", ".NET Core API", "SQL Server", "Tailwind CSS"],
-    role: "Full Stack Engineer"
-},
+        function updateClock() {
+            const now = new Date();
+            const options = { timeZone: 'Asia/Karachi', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+            document.getElementById('clock').innerText = new Intl.DateTimeFormat('en-GB', options).format(now);
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
 
-            himaglow: {
-                title: "HimaGlow Brand",
-                subtitle: "E-Commerce Identity",
-                desc: "Built a dynamic web presence for HimaGlow pink salt products. Integrated secure user authentication and a custom inventory management system for Himalayan salt items.",
-                stack: ["Laravel", "Tailwind CSS", "MySQL"],
-                role: "Designer & Dev"
+        const resumeProjects = {
+            networking: {
+                title: "Networking Platform",
+                meta: "Full-Stack Laravel Project",
+                problem: "The need for a secure internal communication system with controlled access.",
+                solution: "Engineered a platform using Laravel[cite: 1, 20]. Implemented custom middleware for route protection [cite: 1, 22] and a relational MySQL schema for efficient data flow[cite: 1, 21].",
+                tech: ["Laravel", "MySQL", "Middleware", "PHP"],
+                stats: ["Secure Auth System", "Relational Schema", "MVC Architecture"]
             },
-            apis: {
-                title: "RESTful APIs",
-                subtitle: "Enterprise Data Endpoints",
-                desc: "Developed high-performance REST APIs using Laravel Sanctum and .NET Core. Tested extensively with Postman to ensure secure data flow and 99.9% uptime for client-side consumption.",
-                stack: ["PHP", "C#", "Postman", "JWT"],
-                role: "API Specialist"
+            restaurant: {
+                title: "Restaurant Management",
+                meta: "Admin & Order Logic",
+                problem: "Inefficient order tracking and menu management in traditional systems.",
+                solution: "Developed an end-to-end management system[cite: 1, 35]. Created a comprehensive admin dashboard for CRUD operations on menu items and orders[cite: 1, 36].",
+                tech: ["PHP", "Laravel", "JavaScript", "SQL Server"],
+                stats: ["Real-time CRUD", "Admin Dashboard", "Order Tracking"]
+            },
+            salt: {
+                title: "Pink Salt Web App",
+                meta: "Dynamic Database Application",
+                problem: "Managing complex inventory data with multi-level relationships.",
+                solution: "Built a dynamic Laravel-based web application[cite: 1, 39]. Focused on database relationships (1:M, M:M) [cite: 1, 42] and integrated an advanced admin panel[cite: 1, 41].",
+                tech: ["Laravel", "MySQL", "Eloquent ORM", "Auth"],
+                stats: ["Dynamic Content", "Auth Integration", "Schema Optimization"]
+            },
+            api: {
+                title: "RESTful API Hub",
+                meta: "Backend Integration Service",
+                problem: "Lack of standardized endpoints for external service consumption.",
+                solution: "Developed RESTful APIs using Laravel[cite: 1, 44]. Implemented authentication and full CRUD capabilities, with rigorous testing via Postman[cite: 1, 45, 46].",
+                tech: ["Laravel", "JSON", "Postman", "JWT"],
+                stats: ["API Authentication", "Clean Endpoints", "Tested with Postman"]
             }
         };
 
         function openModal(id) {
-            const data = projectData[id];
+            const data = resumeProjects[id];
             const content = document.getElementById('modalContent');
-            
             content.innerHTML = `
-                <span class="text-emerald-400 font-bold uppercase tracking-widest text-[9px] mb-2 block tracking-widest">${data.subtitle}</span>
-                <h2 class="text-3xl md:text-4xl font-black text-white mb-6 uppercase tracking-tighter">${data.title}</h2>
-                <p class="text-slate-400 text-base md:text-lg leading-relaxed mb-8">${data.desc}</p>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                <div class="grid lg:grid-cols-2 gap-20">
                     <div>
-                        <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-3">Stack</h4>
-                        <div class="flex flex-wrap gap-2">
-                            ${data.stack.map(s => `<span class="px-2 py-1 bg-white/5 rounded text-[9px] text-slate-300 border border-emerald-500/20">${s}</span>`).join('')}
+                        <span class="text-amber-500 font-bold uppercase text-xs tracking-[0.3em] mb-6 block">${data.meta}</span>
+                        <h2 class="text-6xl font-black text-white mb-10 tracking-tighter">${data.title}</h2>
+                        <div class="space-y-12">
+                            <div>
+                                <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-widest">Context</h4>
+                                <p class="text-slate-400 text-lg leading-relaxed">${data.problem}</p>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-widest">Development Solution</h4>
+                                <p class="text-slate-400 text-lg leading-relaxed">${data.solution}</p>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <h4 class="text-white font-bold text-[10px] uppercase tracking-widest mb-3">Role</h4>
-                        <p class="text-emerald-400 font-bold text-xs uppercase">${data.role}</p>
+                    <div class="bg-white/5 p-12 rounded-[3rem] border border-white/10">
+                        <h4 class="text-white font-bold text-sm mb-8 uppercase tracking-widest">Stack Used</h4>
+                        <div class="flex flex-wrap gap-3 mb-16">
+                            ${data.tech.map(t => `<span class="skill-node font-bold text-[10px] tracking-widest uppercase">${t}</span>`).join('')}
+                        </div>
+                        <h4 class="text-white font-bold text-sm mb-8 uppercase tracking-widest">Key Results</h4>
+                        <div class="space-y-4">
+                            ${data.stats.map(s => `
+                                <div class="flex items-center gap-4 text-emerald-400 font-black italic">
+                                    <i class="fa-solid fa-circle-check"></i>
+                                    <span>${s}</span>
+                                </div>
+                            `).join('')}
+                        </div>
                     </div>
                 </div>
-                <a href="https://github.com/Samiha-png" target="_blank" class="inline-block w-full text-center px-8 py-4 bg-emerald-500 text-black rounded-2xl font-bold hover:bg-emerald-400 transition shadow-lg shadow-emerald-500/20 text-xs">View Source Code</a>
             `;
             document.getElementById('projectModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
@@ -343,63 +347,6 @@ restaurant: {
             document.getElementById('projectModal').classList.add('hidden');
             document.body.style.overflow = 'auto';
         }
-
-        window.onclick = (e) => { if(e.target.id === 'projectModal') closeModal(); }
-
-        // Smooth Scroll Fix for Offset
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const headerOffset = 80;
-                    const elementPosition = target.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // Active Link on Scroll
-        window.addEventListener('scroll', () => {
-            let current = "";
-            document.querySelectorAll("section").forEach(s => {
-                if(window.pageYOffset >= s.offsetTop - 120) current = s.getAttribute("id");
-            });
-            document.querySelectorAll(".nav-link").forEach(l => {
-                l.classList.remove("active-link");
-                if(l.getAttribute("href").includes(current)) l.classList.add("active-link");
-            });
-        });
-
-
-        function toggleMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('active');
-    
-    // Icon change logic
-    const icon = document.querySelector('button[onclick="toggleMenu()"] i');
-    if(menu.classList.contains('active')) {
-        icon.classList.replace('fa-bars-staggered', 'fa-xmark');
-    } else {
-        icon.classList.replace('fa-xmark', 'fa-bars-staggered');
-    }
-}
-
-// Close menu on click outside
-window.addEventListener('click', (e) => {
-    const menu = document.getElementById('mobileMenu');
-    const button = document.querySelector('button[onclick="toggleMenu()"]');
-    if (!menu.contains(e.target) && !button.contains(e.target) && menu.classList.contains('active')) {
-        toggleMenu();
-    }
-});
-
-
     </script>
 </body>
 </html>
