@@ -1,352 +1,1185 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Samiha Khan | Full-Stack Software Engineer</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <style>
-        :root { 
-            --bg: #020617; 
-            --accent: #fbbf24; 
-            --card-bg: rgba(15, 23, 42, 0.4);
-            --border: rgba(255, 255, 255, 0.08);
-        }
-        body { 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
-            background-color: var(--bg); 
-            color: #94a3b8;
-            letter-spacing: -0.01em;
-        }
-        .mono { font-family: 'JetBrains Mono', monospace; }
-        
-        .glass-mesh {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: 
-                radial-gradient(circle at 0% 0%, rgba(251, 191, 36, 0.05) 0%, transparent 30%),
-                radial-gradient(circle at 100% 100%, rgba(16, 185, 129, 0.05) 0%, transparent 30%),
-                #020617;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samiha Khan — Full-Stack Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        .bento-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-        }
+  :root {
+    --ink: #0a0a0f;
+    --gold: #f0b429;
+    --gold-dim: rgba(240, 180, 41, 0.15);
+    --gold-glow: rgba(240, 180, 41, 0.4);
+    --cream: #fef9f0;
+    --slate: #8892a4;
+    --glass: rgba(255,255,255,0.04);
+    --glass-border: rgba(255,255,255,0.09);
+    --card: rgba(12, 14, 22, 0.7);
+  }
 
-        .bento-card:hover {
-            border-color: rgba(251, 191, 36, 0.3);
-            background: rgba(15, 23, 42, 0.8);
-            transform: translateY(-5px);
-        }
+  html { scroll-behavior: smooth; }
 
-        .btn-primary {
-            background: #fff;
-            color: #000;
-            padding: 1rem 2.5rem;
-            border-radius: 1.25rem;
-            font-weight: 800;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-        }
+  body {
+    font-family: 'Syne', sans-serif;
+    background: var(--ink);
+    color: var(--slate);
+    overflow-x: hidden;
+    cursor: none;
+  }
 
-        .btn-primary:hover {
-            background: var(--accent);
-            transform: scale(1.02) translateY(-2px);
-            box-shadow: 0 20px 40px -10px rgba(251, 191, 36, 0.3);
-        }
+  /* CUSTOM CURSOR */
+  .cursor-dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, width 0.3s, height 0.3s, background 0.3s;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid rgba(240, 180, 41, 0.6);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease, width 0.3s, height 0.3s, border-color 0.3s;
+  }
+  body:hover .cursor-dot { opacity: 1; }
+  a:hover ~ .cursor-dot, button:hover ~ .cursor-dot { transform: translate(-50%,-50%) scale(2); }
 
-        .skill-node {
-            padding: 0.5rem 1rem;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border);
-            border-radius: 1rem;
-            font-size: 0.85rem;
-            color: #f8fafc;
-        }
+  /* SCENE BACKGROUND */
+  .scene-bg {
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 15% 10%, rgba(240,180,41,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 85% 85%, rgba(72,52,170,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(14,18,35,1) 0%, #0a0a0f 100%);
+  }
 
-        @keyframes pulse-border {
-            0% { border-color: rgba(251, 191, 36, 0.1); }
-            50% { border-color: rgba(251, 191, 36, 0.5); }
-            100% { border-color: rgba(251, 191, 36, 0.1); }
-        }
-        .active-project { animation: pulse-border 3s infinite; }
-    </style>
+  /* NOISE GRAIN */
+  .grain {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 128px;
+  }
+
+  /* 3D GRID */
+  .grid-3d {
+    position: fixed; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 200%; height: 60vh; z-index: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(240,180,41,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240,180,41,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    transform: translateX(-50%) perspective(600px) rotateX(60deg);
+    transform-origin: bottom center;
+    mask-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent 70%);
+  }
+
+  /* FLOATING PARTICLES */
+  .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .particle {
+    position: absolute; border-radius: 50%;
+    background: var(--gold); opacity: 0;
+    animation: floatUp var(--dur) ease-in-out infinite var(--delay);
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.2; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.25rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(10,10,15,0.7);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.4s;
+  }
+  nav.scrolled { background: rgba(10,10,15,0.95); }
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .logo-mark {
+    width: 42px; height: 42px;
+    background: var(--gold);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 1.2rem; color: #000;
+    box-shadow: 0 0 30px rgba(240,180,41,0.4), 0 8px 20px rgba(0,0,0,0.4);
+    transform-style: preserve-3d;
+    transition: transform 0.4s ease;
+    position: relative;
+  }
+  .logo-mark::after {
+    content: 'SK';
+    position: absolute;
+    transform: translateZ(-4px) translateY(4px);
+    background: rgba(180,120,0,0.8);
+    border-radius: 10px;
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    top: 0; left: 0;
+  }
+  .logo-mark:hover { transform: rotateY(15deg) rotateX(-5deg); }
+  .logo-text { line-height: 1.1; }
+  .logo-name { font-size: 0.95rem; font-weight: 700; color: #fff; letter-spacing: -0.02em; }
+  .logo-title { font-size: 0.6rem; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; }
+  .nav-links {
+    display: flex; align-items: center; gap: 2.5rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--slate);
+    text-decoration: none; transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px; background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: #fff; }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta {
+    padding: 0.6rem 1.5rem;
+    background: var(--gold);
+    color: #000 !important;
+    border-radius: 8px;
+    font-weight: 700 !important;
+    font-size: 0.7rem !important;
+    letter-spacing: 0.1em !important;
+    box-shadow: 0 4px 20px rgba(240,180,41,0.25);
+    transition: all 0.3s !important;
+    text-decoration: none;
+  }
+  .nav-cta:hover { box-shadow: 0 8px 30px rgba(240,180,41,0.5) !important; transform: translateY(-1px); }
+  .nav-cta::after { display: none !important; }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: none; padding: 4px;
+  }
+  .hamburger span { display: block; width: 22px; height: 2px; background: #fff; transition: all 0.3s; border-radius: 2px; }
+  .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+  .mobile-menu {
+    display: none; position: fixed; inset: 0; z-index: 99;
+    background: rgba(10,10,15,0.98); backdrop-filter: blur(30px);
+    flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem;
+    padding-top: 80px;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-size: 2rem; font-weight: 800; color: #fff; text-decoration: none;
+    letter-spacing: -0.03em; transition: color 0.3s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+
+  /* HERO */
+  #hero {
+    position: relative; z-index: 2;
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 2rem 80px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.45rem 1rem;
+    background: var(--gold-dim); border: 1px solid rgba(240,180,41,0.3);
+    border-radius: 100px;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+  .ping { position: relative; display: flex; }
+  .ping span:first-child {
+    animation: ping 1.5s cubic-bezier(0,0,0.2,1) infinite;
+    position: absolute; inset: 0; border-radius: 50%;
+    background: var(--gold); opacity: 0.6;
+  }
+  @keyframes ping { 75%, 100% { transform: scale(2); opacity: 0; } }
+  .ping span:last-child { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
+
+  .hero-title {
+    font-size: clamp(3.2rem, 8vw, 8rem);
+    font-weight: 800; line-height: 0.88;
+    letter-spacing: -0.04em;
+    color: #fff;
+    margin-bottom: 1rem;
+  }
+  .hero-title em {
+    font-family: 'Instrument Serif', serif;
+    font-style: italic;
+    color: var(--gold);
+    font-weight: 400;
+  }
+  .hero-subtitle {
+    font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+    color: var(--slate); max-width: 520px;
+    line-height: 1.7; margin-bottom: 3rem;
+    margin-top: 1.5rem;
+  }
+  .hero-subtitle strong { color: rgba(255,255,255,0.9); font-weight: 600; }
+
+  .hero-actions { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 1rem 2rem;
+    background: var(--gold); color: #000;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.75rem; font-weight: 800; letter-spacing: 0.15em;
+    text-transform: uppercase; text-decoration: none;
+    border-radius: 12px; border: none; cursor: none;
+    box-shadow: 0 0 0 0 rgba(240,180,41,0.4), 0 8px 30px rgba(240,180,41,0.2);
+    transition: all 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .btn-gold::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3) 0%, transparent 60%);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .btn-gold:hover { box-shadow: 0 0 0 6px rgba(240,180,41,0.15), 0 12px 40px rgba(240,180,41,0.35); transform: translateY(-2px); }
+  .btn-gold:hover::before { opacity: 1; }
+
+  .btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 1rem 2rem;
+    background: var(--glass); border: 1px solid var(--glass-border);
+    color: #fff; font-family: 'Syne', sans-serif;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; text-decoration: none;
+    border-radius: 12px; cursor: none;
+    transition: all 0.3s; backdrop-filter: blur(12px);
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
+
+  .social-strip {
+    display: flex; align-items: center; gap: 1rem; margin-top: 3.5rem;
+  }
+  .social-strip span {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(255,255,255,0.2);
+  }
+  .social-divider { width: 40px; height: 1px; background: rgba(255,255,255,0.1); }
+  .social-link {
+    width: 38px; height: 38px;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--slate); text-decoration: none; font-size: 0.9rem;
+    transition: all 0.3s; background: var(--glass);
+  }
+  .social-link:hover { color: var(--gold); border-color: rgba(240,180,41,0.4); background: var(--gold-dim); transform: translateY(-2px); }
+
+  /* FLOATING CARD */
+  .hero-card-float {
+    position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);
+    width: 300px;
+    background: var(--card); border: 1px solid var(--glass-border);
+    backdrop-filter: blur(20px);
+    border-radius: 24px; padding: 2rem;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.04);
+    animation: float3d 6s ease-in-out infinite;
+    transform-style: preserve-3d;
+  }
+  @keyframes float3d {
+    0%, 100% { transform: translateY(-50%) rotateX(2deg) rotateY(-3deg); }
+    33% { transform: translateY(calc(-50% - 12px)) rotateX(-1deg) rotateY(3deg); }
+    66% { transform: translateY(calc(-50% + 8px)) rotateX(3deg) rotateY(-2deg); }
+  }
+  .stack-label {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  .stack-row { margin-bottom: 1.25rem; }
+  .stack-row-label {
+    font-size: 0.55rem; font-weight: 700; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(255,255,255,0.25); margin-bottom: 0.5rem;
+  }
+  .stack-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .chip {
+    padding: 0.3rem 0.65rem;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px; font-size: 0.7rem; color: rgba(255,255,255,0.8);
+    font-weight: 500;
+    transition: all 0.3s;
+  }
+  .chip:hover { background: var(--gold-dim); border-color: rgba(240,180,41,0.3); color: var(--gold); }
+  .availability-badge {
+    display: flex; align-items: center; gap: 0.5rem;
+    padding: 0.6rem 0.75rem;
+    background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 8px; margin-top: 1.5rem;
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; color: #34d399;
+    text-transform: uppercase;
+  }
+  .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; animation: pulse-g 2s infinite; }
+  @keyframes pulse-g { 0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); } 50% { box-shadow: 0 0 0 6px rgba(16,185,129,0); } }
+
+  /* SCROLL INDICATOR */
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-size: 0.55rem; font-weight: 700; letter-spacing: 0.3em;
+    text-transform: uppercase; color: rgba(255,255,255,0.2);
+  }
+  .scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, transparent, rgba(240,180,41,0.6));
+    animation: scrollDown 2s ease-in-out infinite;
+  }
+  @keyframes scrollDown {
+    0%, 100% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* SECTION COMMON */
+  section { position: relative; z-index: 2; padding: 8rem 2rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.3em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    font-weight: 800; letter-spacing: -0.04em;
+    color: #fff; line-height: 0.9;
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--gold); }
+  .section-divider { width: 60px; height: 2px; background: var(--gold); margin-bottom: 4rem; }
+
+  /* ABOUT / SKILLS GRID */
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
+  }
+  .bcard {
+    background: var(--card); border: 1px solid var(--glass-border);
+    border-radius: 20px; padding: 2.5rem;
+    backdrop-filter: blur(20px);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+    position: relative; overflow: hidden;
+  }
+  .bcard::before {
+    content: ''; position: absolute; inset: 0; opacity: 0;
+    background: linear-gradient(135deg, rgba(240,180,41,0.05) 0%, transparent 60%);
+    transition: opacity 0.5s;
+  }
+  .bcard:hover { border-color: rgba(240,180,41,0.25); transform: translateY(-6px) rotateX(1deg) rotateY(-1deg); box-shadow: 0 30px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(240,180,41,0.1); }
+  .bcard:hover::before { opacity: 1; }
+  .bcard-wide { grid-column: span 2; }
+  .bcard-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem; font-weight: 600; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
+  }
+  .stat-block { margin-bottom: 2rem; }
+  .stat-number {
+    font-size: 3.5rem; font-weight: 800; letter-spacing: -0.05em;
+    color: #fff; line-height: 1;
+  }
+  .stat-label { font-size: 0.75rem; color: var(--slate); margin-top: 0.25rem; }
+
+  .skill-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tag {
+    padding: 0.45rem 0.9rem;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px; font-size: 0.75rem; color: rgba(255,255,255,0.75); font-weight: 500;
+    transition: all 0.3s; cursor: default;
+  }
+  .skill-tag:hover { background: var(--gold-dim); border-color: rgba(240,180,41,0.35); color: var(--gold); transform: scale(1.05); }
+  .skill-tag.highlight { background: var(--gold-dim); border-color: rgba(240,180,41,0.3); color: var(--gold); }
+
+  .progress-item { margin-bottom: 1.25rem; }
+  .progress-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; }
+  .progress-name { font-size: 0.75rem; font-weight: 600; color: rgba(255,255,255,0.8); }
+  .progress-pct { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--gold); }
+  .progress-track { height: 4px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+  .progress-fill {
+    height: 100%; border-radius: 2px;
+    background: linear-gradient(90deg, var(--gold), rgba(240,220,100,0.8));
+    width: 0; transition: width 1.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow: 0 0 10px rgba(240,180,41,0.4);
+  }
+
+  /* PROJECTS */
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+  }
+  .proj-card {
+    background: var(--card); border: 1px solid var(--glass-border);
+    border-radius: 20px; overflow: hidden;
+    cursor: none; transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d; position: relative;
+  }
+  .proj-card:hover { border-color: rgba(240,180,41,0.3); transform: translateY(-8px) rotateX(2deg); box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
+  .proj-visual {
+    aspect-ratio: 16/9; position: relative; overflow: hidden;
+    background: rgba(5,5,10,0.8);
+  }
+  .proj-bg {
+    position: absolute; inset: 0;
+    transition: transform 0.6s cubic-bezier(0.23,1,0.32,1);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .proj-card:hover .proj-bg { transform: scale(1.05); }
+  .proj-code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 5rem; font-weight: 700;
+    opacity: 0.06; color: #fff; letter-spacing: -0.05em;
+    user-select: none;
+  }
+  .proj-overlay {
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.7); backdrop-filter: blur(6px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; transition: opacity 0.4s;
+  }
+  .proj-card:hover .proj-overlay { opacity: 1; }
+  .proj-cta {
+    padding: 0.75rem 1.75rem;
+    background: var(--gold); color: #000;
+    font-size: 0.7rem; font-weight: 800; letter-spacing: 0.15em;
+    text-transform: uppercase; border-radius: 10px;
+    transform: translateY(10px); transition: transform 0.4s;
+  }
+  .proj-card:hover .proj-cta { transform: translateY(0); }
+  .proj-body { padding: 1.75rem; }
+  .proj-tags { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+  .proj-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 0.3rem 0.65rem;
+    border-radius: 5px; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .proj-title {
+    font-size: 1.35rem; font-weight: 800; letter-spacing: -0.03em;
+    color: #fff; margin-bottom: 0.6rem; line-height: 1.2;
+  }
+  .proj-desc { font-size: 0.82rem; color: var(--slate); line-height: 1.6; }
+  .proj-footer {
+    display: flex; justify-content: flex-end; align-items: center;
+    padding: 1rem 1.75rem 1.5rem;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 0.5rem;
+  }
+  .proj-arrow {
+    width: 32px; height: 32px; border-radius: 8px;
+    background: var(--gold-dim); border: 1px solid rgba(240,180,41,0.2);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 0.7rem;
+    transition: all 0.3s;
+  }
+  .proj-card:hover .proj-arrow { background: var(--gold); color: #000; transform: rotate(45deg); }
+
+  /* TIMELINE / EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .edu-card {
+    background: var(--card); border: 1px solid var(--glass-border);
+    border-radius: 20px; padding: 2.5rem;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative; overflow: hidden;
+  }
+  .edu-card::after {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--gold);
+    transition: height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .edu-card:hover { border-color: rgba(240,180,41,0.2); transform: translateY(-4px); }
+  .edu-card:hover::after { height: 100%; }
+  .edu-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    background: var(--gold-dim); border: 1px solid rgba(240,180,41,0.2);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--gold); font-size: 1.1rem; margin-bottom: 1.5rem;
+    box-shadow: 0 0 20px rgba(240,180,41,0.1);
+  }
+  .edu-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem; color: var(--gold); letter-spacing: 0.2em;
+    margin-bottom: 0.5rem; text-transform: uppercase;
+  }
+  .edu-degree { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; }
+  .edu-school { font-size: 0.82rem; color: var(--slate); }
+
+  /* CONTACT */
+  #contact { padding-bottom: 0; }
+  .contact-inner {
+    max-width: 1200px; margin: 0 auto;
+    background: var(--card); border: 1px solid var(--glass-border);
+    border-radius: 28px; padding: 5rem;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .contact-inner::before {
+    content: ''; position: absolute;
+    top: -80px; left: 50%; transform: translateX(-50%);
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(240,180,41,0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .contact-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800; letter-spacing: -0.04em; color: #fff;
+    line-height: 0.95; margin-bottom: 1.5rem;
+  }
+  .contact-title em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--gold); }
+  .contact-desc { font-size: 1rem; color: var(--slate); max-width: 400px; margin: 0 auto 3rem; line-height: 1.7; }
+  .contact-email {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    padding: 1.25rem 2.5rem;
+    background: var(--gold); color: #000;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.85rem; font-weight: 800; letter-spacing: 0.05em;
+    border-radius: 14px; text-decoration: none;
+    box-shadow: 0 0 60px rgba(240,180,41,0.25);
+    transition: all 0.3s;
+  }
+  .contact-email:hover { transform: translateY(-3px); box-shadow: 0 10px 60px rgba(240,180,41,0.45); }
+  .contact-socials { display: flex; justify-content: center; gap: 1rem; margin-top: 2.5rem; }
+
+  /* FOOTER */
+  footer {
+    position: relative; z-index: 2;
+    border-top: 1px solid var(--glass-border);
+    padding: 2.5rem 2rem;
+    max-width: 1200px; margin: 0 auto;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy { font-size: 0.72rem; color: rgba(255,255,255,0.2); }
+  .footer-clock {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; color: var(--gold);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .footer-clock::before { content: '◉'; font-size: 0.5rem; animation: blink 1s infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* MODAL */
+  .modal-backdrop {
+    position: fixed; inset: 0; z-index: 500;
+    background: rgba(5,5,10,0.97); backdrop-filter: blur(30px);
+    display: none; align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal-box {
+    width: 100%; max-width: 900px; max-height: 90vh; overflow-y: auto;
+    background: rgba(14,16,28,0.95); border: 1px solid var(--glass-border);
+    border-radius: 24px; padding: 3.5rem;
+    position: relative;
+    box-shadow: 0 60px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(240,180,41,0.1);
+  }
+  .modal-close {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--glass); border: 1px solid var(--glass-border);
+    color: #fff; font-size: 1rem; cursor: none;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s;
+  }
+  .modal-close:hover { background: rgba(255,255,255,0.1); }
+  .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+  .modal-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6rem; font-weight: 600; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;
+  }
+  .modal-title {
+    font-size: 2.5rem; font-weight: 800; letter-spacing: -0.04em;
+    color: #fff; margin-bottom: 2rem; line-height: 1;
+  }
+  .modal-section-label {
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em;
+    text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.75rem; margin-top: 1.5rem;
+  }
+  .modal-text { font-size: 0.9rem; color: var(--slate); line-height: 1.7; }
+  .modal-panel {
+    background: rgba(5,5,10,0.5); border: 1px solid var(--glass-border);
+    border-radius: 16px; padding: 2rem;
+  }
+  .result-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    padding: 0.75rem 0; border-bottom: 1px solid var(--glass-border);
+    font-size: 0.82rem; color: rgba(255,255,255,0.7); font-weight: 500;
+  }
+  .result-row:last-child { border-bottom: none; }
+  .result-row i { color: #34d399; font-size: 0.75rem; }
+
+  /* REVEAL ANIMATION */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.23,1,0.32,1), transform 0.8s cubic-bezier(0.23,1,0.32,1);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .hero-card-float { display: none; }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.25rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    #hero { padding: 100px 1.25rem 60px; text-align: center; }
+    .hero-eyebrow, .hero-actions, .social-strip { justify-content: center; }
+    .hero-subtitle { margin: 1.5rem auto 2.5rem; }
+    section { padding: 5rem 1.25rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .bcard-wide { grid-column: span 1; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .contact-inner { padding: 3rem 1.5rem; }
+    .modal-box { padding: 2rem 1.5rem; }
+    .modal-grid { grid-template-columns: 1fr; gap: 2rem; }
+    footer { flex-direction: column; align-items: center; text-align: center; padding: 2rem 1.25rem 4rem; }
+    .scroll-hint { display: none; }
+  }
+  @media (max-width: 480px) {
+    .hero-title { font-size: 2.8rem; }
+    .hero-actions { flex-direction: column; align-items: center; }
+    .btn-gold, .btn-ghost { width: 100%; justify-content: center; }
+    .contact-email { width: 100%; justify-content: center; }
+  }
+</style>
 </head>
 <body>
 
-    <div class="glass-mesh"></div>
+<!-- CURSOR -->
+<div class="cursor-dot" id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-6xl">
-        <div class="px-8 py-4 rounded-[2rem] border border-white/5 bg-black/60 backdrop-blur-xl flex justify-between items-center shadow-2xl">
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-amber-500 rounded-xl flex items-center justify-center font-black text-black text-xl shadow-lg shadow-amber-500/20">S</div>
-                <div class="hidden sm:block">
-                    <span class="text-white font-bold tracking-tight block leading-none uppercase">Samiha Khan</span>
-                    <span class="text-[9px] text-amber-500 font-bold tracking-[0.2em] uppercase">Software Engineer</span>
-                </div>
-            </div>
-            <div class="flex gap-6 md:gap-10 text-[10px] font-extrabold uppercase tracking-[0.2em] text-slate-400">
-                <a href="#about" class="hover:text-amber-500 transition">Stack</a>
-                <a href="#projects" class="hover:text-amber-500 transition">Portfolio</a>
-                <a href="mailto:samihakhan569@gmail.com" class="px-5 py-2.5 bg-white/5 border border-white/10 rounded-full text-white hover:bg-white hover:text-black transition">Hire Me</a>
-            </div>
-        </div>
-    </nav>
+<!-- BG ELEMENTS -->
+<div class="scene-bg"></div>
+<div class="grain"></div>
+<div class="grid-3d"></div>
+<div class="particles" id="particles"></div>
 
-    <section id="about" class="pt-56 pb-24 px-6 max-w-7xl mx-auto">
-        <div class="grid lg:grid-cols-12 gap-16 items-start">
-            <div class="lg:col-span-7">
-                <div class="inline-flex items-center gap-3 px-4 py-2 bg-amber-500/5 border border-amber-500/20 text-amber-500 text-[11px] font-bold uppercase tracking-widest rounded-full mb-8">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-                    </span>
-                    Available for Laravel & .NET Roles
-                </div>
-                <h1 class="text-6xl md:text-8xl font-black text-white leading-[0.85] tracking-tighter mb-10">
-                    Engineering <br><span class="text-amber-500">Robust</span> Systems.
-                </h1>
-                <p class="text-xl text-slate-400 max-w-xl mb-12 leading-relaxed">
-                    Junior Full-Stack Developer [cite: 1, 15] focused on building scalable backends with <strong>Laravel</strong> and <strong>.NET Core</strong>. Currently pursuing <strong>ADP in Software Engineering</strong> at APTECH.
-                </p>
-                <div class="flex flex-wrap gap-6">
-                    <a href="#projects" class="btn-primary uppercase tracking-tighter">View Projects <i class="fa-solid fa-chevron-right text-xs"></i></a>
-                    <div class="flex items-center gap-4 px-6 py-4 rounded-2xl border border-white/5 bg-white/5">
-                        <a href="https://github.com/Samiha-png" class="text-white hover:text-amber-500 transition text-2xl"><i class="fa-brands fa-github"></i></a>
-                        <div class="h-6 w-[1px] bg-white/10"></div>
-                        <a href="https://linkedin.com/in/samiha-khan-b606a12ba" class="text-white hover:text-amber-500 transition text-2xl"><i class="fa-brands fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-            </div>
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <div class="logo-mark">S</div>
+    <div class="logo-text">
+      <div class="logo-name">Samiha Khan</div>
+      <div class="logo-title">Full-Stack Engineer</div>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-            <div class="lg:col-span-5">
-                <div class="bento-card p-8 active-project">
-                    <h3 class="mono text-amber-500 text-xs font-bold uppercase mb-6 tracking-widest">Tech Stack Matrix</h3>
-                    <div class="space-y-6">
-                        <div>
-                            <p class="text-[10px] font-bold text-slate-500 uppercase mb-3">Backend Core [cite: 1, 24]</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="skill-node">Laravel</span><span class="skill-node">PHP</span><span class="skill-node">.NET Core</span><span class="skill-node">MySQL</span><span class="skill-node">SQL Server</span>
-                            </div>
-                        </div>
-                        <div>
-                            <p class="text-[10px] font-bold text-slate-500 uppercase mb-3">Frontend [cite: 1, 25]</p>
-                            <div class="flex flex-wrap gap-2">
-                                <span class="skill-node">Angular</span><span class="skill-node">JavaScript</span><span class="skill-node">Bootstrap</span><span class="skill-node">Tailwind</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#stack" onclick="closeMobile()">Stack</a>
+  <a href="#projects" onclick="closeMobile()">Projects</a>
+  <a href="#education" onclick="closeMobile()">Education</a>
+  <a href="#contact" onclick="closeMobile()" style="color: var(--gold)">Hire Me →</a>
+</div>
 
-    <section id="projects" class="py-32 px-6 max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
-            <div class="max-w-xl">
-                <h2 class="text-amber-500 font-bold uppercase tracking-[0.4em] text-xs mb-4">Engineering Portfolio</h2>
-                <h3 class="text-5xl md:text-6xl font-black text-white leading-tight">Project Case Studies.</h3>
-            </div>
-        </div>
+<!-- HERO -->
+<section id="hero" style="padding-top:0; padding-bottom:0; min-height:100vh;">
+  <div style="max-width:1200px; margin:0 auto; padding: 120px 2rem 80px; position:relative; display:flex; flex-direction:column; justify-content:center; min-height:100vh;">
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div class="group cursor-pointer" onclick="openModal('networking')">
-                <div class="relative overflow-hidden rounded-[3rem] bg-slate-900 border border-white/5 aspect-[16/10] mb-10 transition-all duration-500 hover:border-amber-500/30">
-                    <div class="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent opacity-50"></div>
-                    <div class="absolute inset-0 flex items-center justify-center p-20 italic font-black text-white/5 text-8xl">NET</div>
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
-                        <span class="px-8 py-4 bg-white text-black font-black rounded-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform">View Architecture</span>
-                    </div>
-                </div>
-                <div class="px-4">
-                    <div class="flex gap-3 mb-6">
-                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-amber-500">LARAVEL</span>
-                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-slate-300">RELATIONAL DB</span>
-                    </div>
-                    <h4 class="text-4xl font-bold text-white mb-4 tracking-tighter">Networking Platform [cite: 1, 19]</h4>
-                    <p class="text-slate-400 text-lg leading-relaxed mb-6">A secure full-stack platform featuring middleware protection and profile management[cite: 1, 20, 22].</p>
-                </div>
-            </div>
-
-            <div class="group cursor-pointer" onclick="openModal('restaurant')">
-                <div class="relative overflow-hidden rounded-[3rem] bg-slate-900 border border-white/5 aspect-[16/10] mb-10 transition-all duration-500 hover:border-emerald-500/30">
-                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent opacity-50"></div>
-                    <div class="absolute inset-0 flex items-center justify-center p-20 italic font-black text-white/5 text-8xl">POS</div>
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
-                        <span class="px-8 py-4 bg-white text-black font-black rounded-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform">Analyze Logic</span>
-                    </div>
-                </div>
-                <div class="px-4">
-                    <div class="flex gap-3 mb-6">
-                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-emerald-500">CRUD</span>
-                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-slate-300">ADMIN PANEL</span>
-                    </div>
-                    <h4 class="text-4xl font-bold text-white mb-4 tracking-tighter">Restaurant Management [cite: 1, 34]</h4>
-                    <p class="text-slate-400 text-lg leading-relaxed mb-6">Complete order system with admin dashboard and validation-ready workflows[cite: 1, 35, 36].</p>
-                </div>
-            </div>
-
-            <div class="group cursor-pointer" onclick="openModal('salt')">
-                <div class="relative overflow-hidden rounded-[3rem] bg-slate-900 border border-white/5 aspect-[16/10] mb-10 transition-all duration-500 hover:border-pink-500/30">
-                    <div class="absolute inset-0 bg-gradient-to-br from-pink-500/10 to-transparent opacity-50"></div>
-                    <div class="absolute inset-0 flex items-center justify-center p-20 italic font-black text-white/5 text-8xl">WEB</div>
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
-                        <span class="px-8 py-4 bg-white text-black font-black rounded-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform">Explore App</span>
-                    </div>
-                </div>
-                <div class="px-4">
-                    <div class="flex gap-3 mb-6">
-                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-pink-500">DYNAMIC</span>
-                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-slate-300">DATABASE RELATIONSHIPS</span>
-                    </div>
-                    <h4 class="text-4xl font-bold text-white mb-4 tracking-tighter">Pink Salt Web App [cite: 1, 38]</h4>
-                    <p class="text-slate-400 text-lg leading-relaxed mb-6">A dynamic Laravel application showcasing complex database relationships and auth[cite: 1, 39, 41].</p>
-                </div>
-            </div>
-
-            <div class="group cursor-pointer" onclick="openModal('api')">
-                <div class="relative overflow-hidden rounded-[3rem] bg-slate-900 border border-white/5 aspect-[16/10] mb-10 transition-all duration-500 hover:border-blue-500/30">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-transparent opacity-50"></div>
-                    <div class="absolute inset-0 flex items-center justify-center p-20 italic font-black text-white/5 text-8xl">API</div>
-                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center backdrop-blur-sm">
-                        <span class="px-8 py-4 bg-white text-black font-black rounded-2xl transform translate-y-4 group-hover:translate-y-0 transition-transform">View API Docs</span>
-                    </div>
-                </div>
-                <div class="px-4">
-                    <div class="flex gap-3 mb-6">
-                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-blue-500">RESTFUL</span>
-                        <span class="mono text-[10px] px-3 py-1 bg-white/5 rounded-full text-slate-300">POSTMAN</span>
-                    </div>
-                    <h4 class="text-4xl font-bold text-white mb-4 tracking-tighter">REST API Project [cite: 1, 43]</h4>
-                    <p class="text-slate-400 text-lg leading-relaxed mb-6">Developed scalable APIs with Laravel, implementing full CRUD and secure auth[cite: 1, 44, 45].</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div id="projectModal" class="fixed inset-0 z-[200] hidden bg-black/98 backdrop-blur-3xl p-6 overflow-y-auto">
-        <div class="max-w-5xl mx-auto my-12 bg-[#020617] rounded-[3rem] border border-white/10 p-10 md:p-20 relative shadow-2xl">
-            <button onclick="closeModal()" class="absolute top-10 right-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/5 text-white hover:bg-white hover:text-black transition">
-                <i class="fa-solid fa-xmark text-xl"></i>
-            </button>
-            <div id="modalContent"></div>
-        </div>
+    <div class="hero-eyebrow reveal">
+      <span class="ping"><span></span><span></span></span>
+      Available — Laravel & .NET Roles
     </div>
 
-    <footer class="py-24 px-6 border-t border-white/5">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
-            <div class="max-w-md">
-                <h2 class="text-3xl font-black text-white mb-6 tracking-tighter uppercase italic">Samiha<span class="text-amber-500">Khan</span></h2>
-                <p class="text-slate-500 text-sm leading-relaxed mb-8">Building scalable digital foundations. [cite: 1, 15] Open for remote software engineering roles and freelance projects.</p>
-                <div class="flex gap-6">
-                    <a href="https://github.com/Samiha-png" class="text-2xl hover:text-amber-500 transition"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://linkedin.com/in/samiha-khan-b606a12ba" class="text-2xl hover:text-amber-500 transition"><i class="fa-brands fa-linkedin-in"></i></a>
-                    <a href="mailto:samihakhan569@gmail.com" class="text-2xl hover:text-amber-500 transition"><i class="fa-solid fa-envelope"></i></a>
-                    <a href="https://contra.com/samiha_khan_8jrb7mla/work?r=samiha_khan_8jrb7mla" target="_blank" class="text-2xl hover:text-amber-500 transition"><i class="fa-solid fa-bolt"></i></a>
-                </div>
-            </div>
-            <div>
-                <p class="text-[10px] font-bold text-white uppercase tracking-[0.3em] mb-6">Local Time (Karachi)</p>
-                <p class="text-amber-500 font-bold text-5xl uppercase mono" id="clock">00:00:00</p>
-            </div>
+    <h1 class="hero-title reveal reveal-delay-1">
+      Engineering<br>
+      <em>Robust</em><br>
+      Systems.
+    </h1>
+
+    <p class="hero-subtitle reveal reveal-delay-2">
+      Junior Full-Stack Developer focused on building scalable backends with <strong>Laravel</strong> and <strong>.NET Core</strong>. Currently pursuing <strong>ADP in Software Engineering</strong> at APTECH, Karachi.
+    </p>
+
+    <div class="hero-actions reveal reveal-delay-3">
+      <a href="#projects" class="btn-gold">
+        View Projects <i class="fa-solid fa-arrow-right"></i>
+      </a>
+      <a href="mailto:samihakhan569@gmail.com" class="btn-ghost">
+        <i class="fa-solid fa-envelope"></i> Get In Touch
+      </a>
+    </div>
+
+    <div class="social-strip reveal reveal-delay-3">
+      <span>Find me on</span>
+      <div class="social-divider"></div>
+      <a href="https://github.com/Samiha-png" class="social-link" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com/in/samiha-khan-b606a12ba" class="social-link" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="mailto:samihakhan569@gmail.com" class="social-link" title="Email"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+
+    <!-- Floating 3D Card -->
+    <div class="hero-card-float">
+      <div class="stack-label">// Tech Stack</div>
+      <div class="stack-row">
+        <div class="stack-row-label">Backend Core</div>
+        <div class="stack-chips">
+          <span class="chip">Laravel</span>
+          <span class="chip">PHP</span>
+          <span class="chip">.NET Core</span>
+          <span class="chip">MySQL</span>
         </div>
-    </footer>
+      </div>
+      <div class="stack-row">
+        <div class="stack-row-label">Frontend</div>
+        <div class="stack-chips">
+          <span class="chip">Angular</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">Tailwind</span>
+        </div>
+      </div>
+      <div class="stack-row">
+        <div class="stack-row-label">Tools</div>
+        <div class="stack-chips">
+          <span class="chip">Postman</span>
+          <span class="chip">SQL Server</span>
+          <span class="chip">Git</span>
+        </div>
+      </div>
+      <div class="availability-badge">
+        <span class="avail-dot"></span>
+        Open to new opportunities
+      </div>
+    </div>
 
-    <script>
-        function updateClock() {
-            const now = new Date();
-            const options = { timeZone: 'Asia/Karachi', hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-            document.getElementById('clock').innerText = new Intl.DateTimeFormat('en-GB', options).format(now);
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </div>
+</section>
 
-        const resumeProjects = {
-            networking: {
-                title: "Networking Platform",
-                meta: "Full-Stack Laravel Project",
-                problem: "The need for a secure internal communication system with controlled access.",
-                solution: "Engineered a platform using Laravel[cite: 1, 20]. Implemented custom middleware for route protection [cite: 1, 22] and a relational MySQL schema for efficient data flow[cite: 1, 21].",
-                tech: ["Laravel", "MySQL", "Middleware", "PHP"],
-                stats: ["Secure Auth System", "Relational Schema", "MVC Architecture"]
-            },
-            restaurant: {
-                title: "Restaurant Management",
-                meta: "Admin & Order Logic",
-                problem: "Inefficient order tracking and menu management in traditional systems.",
-                solution: "Developed an end-to-end management system[cite: 1, 35]. Created a comprehensive admin dashboard for CRUD operations on menu items and orders[cite: 1, 36].",
-                tech: ["PHP", "Laravel", "JavaScript", "SQL Server"],
-                stats: ["Real-time CRUD", "Admin Dashboard", "Order Tracking"]
-            },
-            salt: {
-                title: "Pink Salt Web App",
-                meta: "Dynamic Database Application",
-                problem: "Managing complex inventory data with multi-level relationships.",
-                solution: "Built a dynamic Laravel-based web application[cite: 1, 39]. Focused on database relationships (1:M, M:M) [cite: 1, 42] and integrated an advanced admin panel[cite: 1, 41].",
-                tech: ["Laravel", "MySQL", "Eloquent ORM", "Auth"],
-                stats: ["Dynamic Content", "Auth Integration", "Schema Optimization"]
-            },
-            api: {
-                title: "RESTful API Hub",
-                meta: "Backend Integration Service",
-                problem: "Lack of standardized endpoints for external service consumption.",
-                solution: "Developed RESTful APIs using Laravel[cite: 1, 44]. Implemented authentication and full CRUD capabilities, with rigorous testing via Postman[cite: 1, 45, 46].",
-                tech: ["Laravel", "JSON", "Postman", "JWT"],
-                stats: ["API Authentication", "Clean Endpoints", "Tested with Postman"]
-            }
-        };
+<!-- STACK / ABOUT -->
+<section id="stack">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-eyebrow">// 01 — Technical Profile</p>
+      <h2 class="section-title">Skills & <em>Expertise</em></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="about-grid">
+      <div class="bcard reveal reveal-delay-1">
+        <div class="bcard-title">// Backend Proficiency</div>
+        <div class="progress-item" data-pct="88">
+          <div class="progress-head"><span class="progress-name">Laravel / PHP</span><span class="progress-pct">88%</span></div>
+          <div class="progress-track"><div class="progress-fill"></div></div>
+        </div>
+        <div class="progress-item" data-pct="72">
+          <div class="progress-head"><span class="progress-name">.NET Core / C#</span><span class="progress-pct">72%</span></div>
+          <div class="progress-track"><div class="progress-fill"></div></div>
+        </div>
+        <div class="progress-item" data-pct="82">
+          <div class="progress-head"><span class="progress-name">MySQL / SQL Server</span><span class="progress-pct">82%</span></div>
+          <div class="progress-track"><div class="progress-fill"></div></div>
+        </div>
+        <div class="progress-item" data-pct="75">
+          <div class="progress-head"><span class="progress-name">RESTful APIs</span><span class="progress-pct">75%</span></div>
+          <div class="progress-track"><div class="progress-fill"></div></div>
+        </div>
+      </div>
 
-        function openModal(id) {
-            const data = resumeProjects[id];
-            const content = document.getElementById('modalContent');
-            content.innerHTML = `
-                <div class="grid lg:grid-cols-2 gap-20">
-                    <div>
-                        <span class="text-amber-500 font-bold uppercase text-xs tracking-[0.3em] mb-6 block">${data.meta}</span>
-                        <h2 class="text-6xl font-black text-white mb-10 tracking-tighter">${data.title}</h2>
-                        <div class="space-y-12">
-                            <div>
-                                <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-widest">Context</h4>
-                                <p class="text-slate-400 text-lg leading-relaxed">${data.problem}</p>
-                            </div>
-                            <div>
-                                <h4 class="text-white font-bold text-sm mb-4 uppercase tracking-widest">Development Solution</h4>
-                                <p class="text-slate-400 text-lg leading-relaxed">${data.solution}</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white/5 p-12 rounded-[3rem] border border-white/10">
-                        <h4 class="text-white font-bold text-sm mb-8 uppercase tracking-widest">Stack Used</h4>
-                        <div class="flex flex-wrap gap-3 mb-16">
-                            ${data.tech.map(t => `<span class="skill-node font-bold text-[10px] tracking-widest uppercase">${t}</span>`).join('')}
-                        </div>
-                        <h4 class="text-white font-bold text-sm mb-8 uppercase tracking-widest">Key Results</h4>
-                        <div class="space-y-4">
-                            ${data.stats.map(s => `
-                                <div class="flex items-center gap-4 text-emerald-400 font-black italic">
-                                    <i class="fa-solid fa-circle-check"></i>
-                                    <span>${s}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                </div>
-            `;
-            document.getElementById('projectModal').classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-        }
+      <div class="bcard reveal reveal-delay-2">
+        <div class="bcard-title">// Frontend & Tools</div>
+        <div class="progress-item" data-pct="70">
+          <div class="progress-head"><span class="progress-name">Angular / TypeScript</span><span class="progress-pct">70%</span></div>
+          <div class="progress-track"><div class="progress-fill"></div></div>
+        </div>
+        <div class="progress-item" data-pct="80">
+          <div class="progress-head"><span class="progress-name">JavaScript / Bootstrap</span><span class="progress-pct">80%</span></div>
+          <div class="progress-track"><div class="progress-fill"></div></div>
+        </div>
+        <div class="progress-item" data-pct="85">
+          <div class="progress-head"><span class="progress-name">Tailwind CSS</span><span class="progress-pct">85%</span></div>
+          <div class="progress-track"><div class="progress-fill"></div></div>
+        </div>
+        <div class="progress-item" data-pct="78">
+          <div class="progress-head"><span class="progress-name">Postman / API Testing</span><span class="progress-pct">78%</span></div>
+          <div class="progress-track"><div class="progress-fill"></div></div>
+        </div>
+      </div>
 
-        function closeModal() {
-            document.getElementById('projectModal').classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-    </script>
+      <div class="bcard bcard-wide reveal reveal-delay-1">
+        <div class="bcard-title">// Full Technology Arsenal</div>
+        <div class="skill-grid">
+          <span class="skill-tag highlight">Laravel</span>
+          <span class="skill-tag highlight">PHP</span>
+          <span class="skill-tag highlight">.NET Core</span>
+          <span class="skill-tag highlight">MySQL</span>
+          <span class="skill-tag">SQL Server</span>
+          <span class="skill-tag">Eloquent ORM</span>
+          <span class="skill-tag">MVC Pattern</span>
+          <span class="skill-tag">RESTful APIs</span>
+          <span class="skill-tag">JWT Auth</span>
+          <span class="skill-tag">Middleware</span>
+          <span class="skill-tag">Angular</span>
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">TypeScript</span>
+          <span class="skill-tag">Bootstrap</span>
+          <span class="skill-tag">Tailwind CSS</span>
+          <span class="skill-tag">Postman</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">CRUD Operations</span>
+          <span class="skill-tag">DB Relationships</span>
+          <span class="skill-tag">Admin Panels</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-eyebrow">// 02 — Engineering Portfolio</p>
+      <h2 class="section-title">Project <em>Case Studies</em></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="projects-grid">
+
+      <div class="proj-card reveal reveal-delay-1" onclick="openModal('networking')">
+        <div class="proj-visual">
+          <div class="proj-bg" style="background: linear-gradient(135deg, rgba(240,180,41,0.08) 0%, rgba(10,10,20,1) 70%);">
+            <span class="proj-code">NET</span>
+          </div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag" style="color: var(--gold); border-color: rgba(240,180,41,0.2);">Laravel</span>
+            <span class="proj-tag">MySQL</span>
+            <span class="proj-tag">Middleware</span>
+          </div>
+          <div class="proj-title">Networking Platform</div>
+          <p class="proj-desc">Secure full-stack communication platform with custom middleware route protection and relational database schema.</p>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal reveal-delay-2" onclick="openModal('restaurant')">
+        <div class="proj-visual">
+          <div class="proj-bg" style="background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(10,10,20,1) 70%);">
+            <span class="proj-code">POS</span>
+          </div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag" style="color: #34d399; border-color: rgba(52,211,153,0.2);">CRUD</span>
+            <span class="proj-tag">Admin Panel</span>
+            <span class="proj-tag">Order Logic</span>
+          </div>
+          <div class="proj-title">Restaurant Management</div>
+          <p class="proj-desc">End-to-end order tracking with comprehensive admin dashboard for real-time menu and order CRUD management.</p>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal reveal-delay-1" onclick="openModal('salt')">
+        <div class="proj-visual">
+          <div class="proj-bg" style="background: linear-gradient(135deg, rgba(236,72,153,0.08) 0%, rgba(10,10,20,1) 70%);">
+            <span class="proj-code">WEB</span>
+          </div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag" style="color: #f472b6; border-color: rgba(244,114,182,0.2);">Dynamic</span>
+            <span class="proj-tag">Eloquent ORM</span>
+            <span class="proj-tag">Auth</span>
+          </div>
+          <div class="proj-title">Pink Salt Web App</div>
+          <p class="proj-desc">Dynamic Laravel application with complex 1:M and M:M database relationships, auth integration and advanced admin panel.</p>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal reveal-delay-2" onclick="openModal('api')">
+        <div class="proj-visual">
+          <div class="proj-bg" style="background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(10,10,20,1) 70%);">
+            <span class="proj-code">API</span>
+          </div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+        </div>
+        <div class="proj-body">
+          <div class="proj-tags">
+            <span class="proj-tag" style="color: #818cf8; border-color: rgba(129,140,248,0.2);">RESTful</span>
+            <span class="proj-tag">JWT Auth</span>
+            <span class="proj-tag">Postman</span>
+          </div>
+          <div class="proj-title">RESTful API Hub</div>
+          <p class="proj-desc">Scalable Laravel-backed API layer implementing full CRUD, JWT authentication and rigorous Postman endpoint testing.</p>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-eyebrow">// 03 — Background</p>
+      <h2 class="section-title">Education & <em>Certifications</em></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-card reveal reveal-delay-1">
+        <div class="edu-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <div class="edu-year">2023 — Present</div>
+        <div class="edu-degree">ADP in Software Engineering</div>
+        <div class="edu-school">APTECH Computer Education, Karachi</div>
+      </div>
+      <div class="edu-card reveal reveal-delay-2">
+        <div class="edu-icon"><i class="fa-brands fa-laravel"></i></div>
+        <div class="edu-year">2024</div>
+        <div class="edu-degree">Laravel Full-Stack Development</div>
+        <div class="edu-school">Hands-on: MVC, Auth, Eloquent ORM, APIs</div>
+      </div>
+      <div class="edu-card reveal reveal-delay-1">
+        <div class="edu-icon"><i class="fa-solid fa-server"></i></div>
+        <div class="edu-year">2024</div>
+        <div class="edu-degree">.NET Core & Angular</div>
+        <div class="edu-school">Enterprise-grade backend + SPA frontend</div>
+      </div>
+      <div class="edu-card reveal reveal-delay-2">
+        <div class="edu-icon"><i class="fa-solid fa-database"></i></div>
+        <div class="edu-year">2023 — 2024</div>
+        <div class="edu-degree">Database Architecture</div>
+        <div class="edu-school">MySQL · SQL Server · Relational Design</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner reveal">
+    <p class="section-eyebrow" style="margin-bottom: 1rem;">// 04 — Let's Work Together</p>
+    <h2 class="contact-title">Ready to Build<br><em>Something Great?</em></h2>
+    <p class="contact-desc">Open to remote roles, freelance projects, and full-time opportunities in Laravel and .NET development.</p>
+    <a href="mailto:samihakhan569@gmail.com" class="contact-email">
+      <i class="fa-solid fa-paper-plane"></i>
+      samihakhan569@gmail.com
+    </a>
+    <div class="contact-socials">
+      <a href="https://github.com/Samiha-png" class="social-link" target="_blank"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com/in/samiha-khan-b606a12ba" class="social-link" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+      <a href="https://contra.com/samiha_khan_8jrb7mla/work?r=samiha_khan_8jrb7mla" class="social-link" target="_blank"><i class="fa-solid fa-bolt"></i></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-copy">© 2025 Samiha Khan — Built with intention.</div>
+  <div class="footer-clock" id="clock">00:00:00 PKT</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+// CURSOR
+const dot = document.getElementById('cursorDot');
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+function animCursor() {
+  dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+  rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(animCursor);
+}
+animCursor();
+document.querySelectorAll('a, button, .proj-card, .bcard, .edu-card').forEach(el => {
+  el.addEventListener('mouseenter', () => { dot.style.transform = 'translate(-50%,-50%) scale(2.5)'; ring.style.transform = 'translate(-50%,-50%) scale(1.4)'; ring.style.borderColor = 'var(--gold)'; });
+  el.addEventListener('mouseleave', () => { dot.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.borderColor = 'rgba(240,180,41,0.6)'; });
+});
+
+// PARTICLES
+const pContainer = document.getElementById('particles');
+for (let i = 0; i < 25; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  const size = Math.random() * 3 + 1;
+  p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;--dur:${Math.random()*15+10}s;--delay:${Math.random()*15}s;`;
+  pContainer.appendChild(p);
+}
+
+// NAV SCROLL
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// HAMBURGER
+document.getElementById('hamburger').addEventListener('click', function() {
+  this.classList.toggle('open');
+  document.getElementById('mobileMenu').classList.toggle('open');
+  document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+});
+function closeMobile() {
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobileMenu').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// REVEAL ON SCROLL
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// PROGRESS BARS
+const progObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.progress-item').forEach(item => {
+        const pct = item.dataset.pct;
+        item.querySelector('.progress-fill').style.width = pct + '%';
+      });
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.bcard').forEach(el => progObs.observe(el));
+
+// CLOCK
+function tick() {
+  const t = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Karachi', hour12: false, hour:'2-digit', minute:'2-digit', second:'2-digit' }).format(new Date());
+  document.getElementById('clock').innerHTML = `${t} PKT`;
+}
+setInterval(tick, 1000); tick();
+
+// MODAL DATA
+const projects = {
+  networking: {
+    tag: 'Full-Stack Laravel', title: 'Networking Platform',
+    context: 'The need for a secure internal communication system with controlled access, requiring robust authentication and a clean relational data model.',
+    solution: 'Engineered a full-stack platform using Laravel\'s MVC architecture. Implemented custom middleware for granular route protection and a normalized MySQL schema for efficient data relationships.',
+    tech: ['Laravel', 'PHP', 'MySQL', 'Middleware', 'MVC'],
+    results: ['Secure Authentication System', 'Custom Middleware Protection', 'Relational Database Schema', 'Clean MVC Architecture']
+  },
+  restaurant: {
+    tag: 'Admin & Order System', title: 'Restaurant Management',
+    context: 'Inefficient order tracking, manual menu updates and no central admin visibility creating operational bottlenecks.',
+    solution: 'Developed an end-to-end management system with a comprehensive admin dashboard. Implemented real-time CRUD operations for menu items, order tracking and data validation workflows.',
+    tech: ['Laravel', 'PHP', 'JavaScript', 'SQL Server', 'Bootstrap'],
+    results: ['Real-time CRUD Operations', 'Admin Dashboard', 'Order Tracking System', 'Input Validation Workflows']
+  },
+  salt: {
+    tag: 'Dynamic Web Application', title: 'Pink Salt Web App',
+    context: 'Managing complex multi-level inventory data requiring sophisticated database relationships and an intuitive administrative interface.',
+    solution: 'Built a dynamic Laravel application focusing on Eloquent ORM relationships (1:Many, Many:Many). Integrated a fully-featured admin panel with role-based access and database schema optimization.',
+    tech: ['Laravel', 'MySQL', 'Eloquent ORM', 'PHP', 'Auth'],
+    results: ['1:M & M:M DB Relationships', 'Auth Integration', 'Admin Panel', 'Schema Optimization']
+  },
+  api: {
+    tag: 'Backend API Service', title: 'RESTful API Hub',
+    context: 'Lack of standardized, secure endpoints for external service consumption and mobile client integration.',
+    solution: 'Developed a comprehensive RESTful API layer using Laravel. Implemented JWT authentication, full CRUD endpoint coverage, and rigorous testing via Postman with documented collections.',
+    tech: ['Laravel', 'JWT', 'Postman', 'JSON', 'PHP'],
+    results: ['JWT Authentication', 'Full CRUD Endpoints', 'Postman Test Suite', 'Standardized Responses']
+  }
+};
+
+function openModal(id) {
+  const d = projects[id];
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-grid">
+      <div>
+        <div class="modal-tag">${d.tag}</div>
+        <div class="modal-title">${d.title}</div>
+        <div class="modal-section-label">The Problem</div>
+        <p class="modal-text">${d.context}</p>
+        <div class="modal-section-label">The Solution</div>
+        <p class="modal-text">${d.solution}</p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.5rem;">
+          ${d.tech.map(t => `<span class="skill-tag" style="font-size:0.7rem;">${t}</span>`).join('')}
+        </div>
+      </div>
+      <div class="modal-panel">
+        <div class="modal-section-label" style="margin-top:0;">Key Outcomes</div>
+        ${d.results.map(r => `<div class="result-row"><i class="fa-solid fa-circle-check"></i> ${r}</div>`).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// TILT EFFECT ON CARDS (desktop)
+if (window.innerWidth > 768) {
+  document.querySelectorAll('.bcard, .proj-card, .edu-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `translateY(-6px) rotateX(${-y*8}deg) rotateY(${x*8}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
+}
+</script>
 </body>
 </html>
