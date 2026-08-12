@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Samiha Khan — Full-Stack Engineer</title>
+  <title>Samiha Khan — Freelance Full-Stack Web Developer</title>
+  <meta name="description" content="Freelance full-stack web developer building modern websites, custom web applications and business platforms. Laravel, .NET, Flutter.">
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <style>
-    /* ——— RESET & ROOT ——— */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -32,7 +32,6 @@
       cursor: none;
     }
 
-    /* ——— CURSOR ——— */
     .cursor-dot {
       width: 8px; height: 8px;
       background: var(--gold);
@@ -54,7 +53,6 @@
     body:hover .cursor-dot { opacity: 1; }
     a:hover ~ .cursor-dot, button:hover ~ .cursor-dot { transform: translate(-50%,-50%) scale(2); }
 
-    /* ——— SCENE ——— */
     .scene-bg {
       position: fixed; inset: 0; z-index: 0;
       background:
@@ -79,7 +77,6 @@
       mask-image: linear-gradient(to top, rgba(0,0,0,0.6), transparent 70%);
     }
 
-    /* ——— PARTICLES ——— */
     .particles { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
     .particle {
       position: absolute; border-radius: 50%;
@@ -93,7 +90,6 @@
       100% { transform: translateY(-10vh) scale(1); opacity: 0; }
     }
 
-    /* ——— NAV ——— */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 1.25rem 2rem;
@@ -133,11 +129,11 @@
     .logo-name { font-size: 0.95rem; font-weight: 700; color: #fff; letter-spacing: -0.02em; }
     .logo-title { font-size: 0.6rem; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; }
     .nav-links {
-      display: flex; align-items: center; gap: 2.5rem;
+      display: flex; align-items: center; gap: 2rem;
       list-style: none;
     }
     .nav-links a {
-      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em;
       text-transform: uppercase; color: var(--slate);
       text-decoration: none; transition: color 0.3s;
       position: relative;
@@ -176,17 +172,16 @@
     .mobile-menu {
       display: none; position: fixed; inset: 0; z-index: 99;
       background: rgba(10,10,15,0.98); backdrop-filter: blur(30px);
-      flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem;
+      flex-direction: column; justify-content: center; align-items: center; gap: 2rem;
       padding-top: 80px;
     }
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
-      font-size: 2rem; font-weight: 800; color: #fff; text-decoration: none;
-      letter-spacing: -0.03em; transition: color 0.3s;
+      font-size: 1.5rem; font-weight: 700; color: #fff; text-decoration: none;
+      letter-spacing: -0.02em; transition: color 0.3s;
     }
     .mobile-menu a:hover { color: var(--gold); }
 
-    /* ——— HERO ——— */
     #hero {
       position: relative; z-index: 2;
       min-height: 100vh;
@@ -214,8 +209,8 @@
     .ping span:last-child { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--gold); }
 
     .hero-title {
-      font-size: clamp(3.2rem, 8vw, 8rem);
-      font-weight: 800; line-height: 0.88;
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      font-weight: 800; line-height: 0.92;
       letter-spacing: -0.04em;
       color: #fff;
       margin-bottom: 1rem;
@@ -227,8 +222,8 @@
       font-weight: 400;
     }
     .hero-subtitle {
-      font-size: clamp(0.9rem, 1.5vw, 1.1rem);
-      color: var(--slate); max-width: 520px;
+      font-size: clamp(0.9rem, 1.4vw, 1.1rem);
+      color: var(--slate); max-width: 540px;
       line-height: 1.7; margin-bottom: 3rem;
       margin-top: 1.5rem;
     }
@@ -268,7 +263,7 @@
     .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); transform: translateY(-2px); }
 
     .social-strip {
-      display: flex; align-items: center; gap: 1rem; margin-top: 3.5rem;
+      display: flex; align-items: center; gap: 1rem; margin-top: 3rem;
     }
     .social-strip span {
       font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em;
@@ -285,10 +280,9 @@
     }
     .social-link:hover { color: var(--gold); border-color: rgba(240,180,41,0.4); background: var(--gold-dim); transform: translateY(-2px); }
 
-    /* ——— FLOATING CARD ——— */
     .hero-card-float {
       position: absolute; right: 2rem; top: 50%; transform: translateY(-50%);
-      width: 300px;
+      width: 280px;
       background: var(--card); border: 1px solid var(--glass-border);
       backdrop-filter: blur(20px);
       border-radius: 24px; padding: 2rem;
@@ -331,7 +325,18 @@
     .avail-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; animation: pulse-g 2s infinite; }
     @keyframes pulse-g { 0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); } 50% { box-shadow: 0 0 0 6px rgba(16,185,129,0); } }
 
-    /* ——— SCROLL HINT ——— */
+    .service-badges {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .badge-slim {
+      padding: 0.2rem 0.7rem;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.5); text-transform: uppercase;
+    }
+
     .scroll-hint {
       position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
       display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
@@ -350,8 +355,7 @@
       100% { transform: scaleY(0); transform-origin: bottom; }
     }
 
-    /* ——— SECTIONS ——— */
-    section { position: relative; z-index: 2; padding: 8rem 2rem; }
+    section { position: relative; z-index: 2; padding: 7rem 2rem; }
     .section-inner { max-width: 1200px; margin: 0 auto; }
     .section-eyebrow {
       font-family: 'JetBrains Mono', monospace;
@@ -368,7 +372,23 @@
     .section-title em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--gold); }
     .section-divider { width: 60px; height: 2px; background: var(--gold); margin-bottom: 4rem; }
 
-    /* ——— ABOUT / SKILLS ——— */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--card); border: 1px solid var(--glass-border);
+      border-radius: 20px; padding: 2rem 1.5rem;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative; overflow: hidden;
+    }
+    .service-card:hover { border-color: rgba(240,180,41,0.3); transform: translateY(-6px); box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
+    .service-icon {
+      font-size: 1.8rem; color: var(--gold); margin-bottom: 1rem;
+      display: inline-block;
+    }
+    .service-title { font-size: 1.1rem; font-weight: 700; color: #fff; margin-bottom: 0.6rem; letter-spacing: -0.02em; }
+    .service-desc { font-size: 0.82rem; color: var(--slate); line-height: 1.6; }
+
     .about-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;
     }
@@ -393,12 +413,6 @@
       font-size: 0.6rem; font-weight: 600; letter-spacing: 0.25em;
       text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem;
     }
-    .stat-block { margin-bottom: 2rem; }
-    .stat-number {
-      font-size: 3.5rem; font-weight: 800; letter-spacing: -0.05em;
-      color: #fff; line-height: 1;
-    }
-    .stat-label { font-size: 0.75rem; color: var(--slate); margin-top: 0.25rem; }
 
     .skill-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .skill-tag {
@@ -422,7 +436,20 @@
       box-shadow: 0 0 10px rgba(240,180,41,0.4);
     }
 
-    /* ——— PROJECTS ——— */
+    .process-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+    }
+    .process-step {
+      text-align: center; padding: 1.5rem;
+    }
+    .step-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2.5rem; font-weight: 700; color: var(--gold);
+      opacity: 0.3; margin-bottom: 0.5rem;
+    }
+    .step-title { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.4rem; }
+    .step-desc { font-size: 0.8rem; color: var(--slate); line-height: 1.5; }
+
     .projects-grid {
       display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
     }
@@ -445,8 +472,8 @@
     .proj-card:hover .proj-bg { transform: scale(1.05); }
     .proj-code {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 4rem; font-weight: 700;
-      opacity: 0.4; color: #fff; letter-spacing: -0.05em;
+      font-size: 3.5rem; font-weight: 700;
+      opacity: 0.3; color: #fff; letter-spacing: -0.05em;
       user-select: none;
     }
     .proj-overlay {
@@ -465,25 +492,37 @@
     }
     .proj-card:hover .proj-cta { transform: translateY(0); }
     .proj-body { padding: 1.75rem; }
-    .proj-tags { display: flex; gap: 0.4rem; margin-bottom: 1rem; flex-wrap: wrap; }
+    .proj-tags { display: flex; gap: 0.4rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
     .proj-tag {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 0.58rem; font-weight: 600; letter-spacing: 0.15em;
-      text-transform: uppercase; padding: 0.3rem 0.65rem;
+      font-size: 0.55rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; padding: 0.2rem 0.6rem;
       border-radius: 5px; background: rgba(255,255,255,0.04);
       border: 1px solid rgba(255,255,255,0.07);
+      color: var(--slate);
     }
+    .proj-tag.cat { color: var(--gold); border-color: rgba(240,180,41,0.2); }
     .proj-title {
-      font-size: 1.35rem; font-weight: 800; letter-spacing: -0.03em;
-      color: #fff; margin-bottom: 0.6rem; line-height: 1.2;
+      font-size: 1.2rem; font-weight: 800; letter-spacing: -0.03em;
+      color: #fff; margin-bottom: 0.5rem; line-height: 1.2;
     }
-    .proj-desc { font-size: 0.82rem; color: var(--slate); line-height: 1.6; }
+    .proj-desc { font-size: 0.8rem; color: var(--slate); line-height: 1.6; }
     .proj-footer {
-      display: flex; justify-content: flex-end; align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 1rem 1.75rem 1.5rem;
       border-top: 1px solid var(--glass-border);
       margin-top: 0.5rem;
     }
+    .proj-links { display: flex; gap: 0.6rem; }
+    .proj-link {
+      padding: 0.3rem 0.8rem;
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--slate);
+      text-decoration: none; border: 1px solid var(--glass-border);
+      border-radius: 6px; transition: all 0.3s;
+      background: var(--glass);
+    }
+    .proj-link:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
     .proj-arrow {
       width: 32px; height: 32px; border-radius: 8px;
       background: var(--gold-dim); border: 1px solid rgba(240,180,41,0.2);
@@ -493,43 +532,24 @@
     }
     .proj-card:hover .proj-arrow { background: var(--gold); color: #000; transform: rotate(45deg); }
 
-    /* ——— EDUCATION ——— */
-    .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-    .edu-card {
+    .why-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
+    }
+    .why-item {
+      text-align: center; padding: 1.5rem;
       background: var(--card); border: 1px solid var(--glass-border);
-      border-radius: 20px; padding: 2.5rem;
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-      position: relative; overflow: hidden;
+      border-radius: 16px; transition: all 0.3s;
     }
-    .edu-card::after {
-      content: ''; position: absolute; top: 0; left: 0;
-      width: 3px; height: 0;
-      background: var(--gold);
-      transition: height 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    .edu-card:hover { border-color: rgba(240,180,41,0.2); transform: translateY(-4px); }
-    .edu-card:hover::after { height: 100%; }
-    .edu-icon {
-      width: 48px; height: 48px; border-radius: 12px;
-      background: var(--gold-dim); border: 1px solid rgba(240,180,41,0.2);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--gold); font-size: 1.1rem; margin-bottom: 1.5rem;
-      box-shadow: 0 0 20px rgba(240,180,41,0.1);
-    }
-    .edu-year {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; color: var(--gold); letter-spacing: 0.2em;
-      margin-bottom: 0.5rem; text-transform: uppercase;
-    }
-    .edu-degree { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; }
-    .edu-school { font-size: 0.82rem; color: var(--slate); }
+    .why-item:hover { border-color: rgba(240,180,41,0.2); transform: translateY(-4px); }
+    .why-icon { font-size: 1.6rem; color: var(--gold); margin-bottom: 0.6rem; }
+    .why-title { font-size: 0.85rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; }
+    .why-desc { font-size: 0.7rem; color: var(--slate); }
 
-    /* ——— CONTACT ——— */
     #contact { padding-bottom: 0; }
     .contact-inner {
       max-width: 1200px; margin: 0 auto;
       background: var(--card); border: 1px solid var(--glass-border);
-      border-radius: 28px; padding: 5rem;
+      border-radius: 28px; padding: 4rem;
       text-align: center; position: relative; overflow: hidden;
     }
     .contact-inner::before {
@@ -540,12 +560,30 @@
       pointer-events: none;
     }
     .contact-title {
-      font-size: clamp(2rem, 5vw, 4rem);
+      font-size: clamp(2rem, 5vw, 3.5rem);
       font-weight: 800; letter-spacing: -0.04em; color: #fff;
       line-height: 0.95; margin-bottom: 1.5rem;
     }
     .contact-title em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--gold); }
-    .contact-desc { font-size: 1rem; color: var(--slate); max-width: 400px; margin: 0 auto 3rem; line-height: 1.7; }
+    .contact-desc { font-size: 1rem; color: var(--slate); max-width: 500px; margin: 0 auto 2rem; line-height: 1.7; }
+    .contact-form {
+      max-width: 600px; margin: 0 auto; text-align: left;
+      display: grid; gap: 1rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 0.3rem; }
+    .form-group label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+    .form-group input, .form-group select, .form-group textarea {
+      padding: 0.8rem 1rem;
+      background: rgba(255,255,255,0.04); border: 1px solid var(--glass-border);
+      border-radius: 10px; color: #fff; font-family: 'Syne', sans-serif;
+      font-size: 0.9rem; transition: border 0.3s;
+      width: 100%;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--gold); outline: none;
+    }
+    .form-group textarea { min-height: 100px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
     .contact-email {
       display: inline-flex; align-items: center; gap: 0.75rem;
       padding: 1.25rem 2.5rem;
@@ -554,12 +592,13 @@
       font-size: 0.85rem; font-weight: 800; letter-spacing: 0.05em;
       border-radius: 14px; text-decoration: none;
       box-shadow: 0 0 60px rgba(240,180,41,0.25);
-      transition: all 0.3s;
+      transition: all 0.3s; border: none; cursor: none;
+      width: fit-content; margin: 0 auto;
     }
     .contact-email:hover { transform: translateY(-3px); box-shadow: 0 10px 60px rgba(240,180,41,0.45); }
+    .contact-email:disabled { opacity: 0.6; cursor: not-allowed; }
     .contact-socials { display: flex; justify-content: center; gap: 1rem; margin-top: 2.5rem; }
 
-    /* ——— FOOTER ——— */
     footer {
       position: relative; z-index: 2;
       border-top: 1px solid var(--glass-border);
@@ -577,69 +616,19 @@
     .footer-clock::before { content: '◉'; font-size: 0.5rem; animation: blink 1s infinite; }
     @keyframes blink { 50% { opacity: 0; } }
 
-    /* ——— MODAL ——— */
-    .modal-backdrop {
-      position: fixed; inset: 0; z-index: 500;
-      background: rgba(5,5,10,0.97); backdrop-filter: blur(30px);
-      display: none; align-items: center; justify-content: center;
-      padding: 2rem;
-    }
-    .modal-backdrop.open { display: flex; }
-    .modal-box {
-      width: 100%; max-width: 900px; max-height: 90vh; overflow-y: auto;
-      background: rgba(14,16,28,0.95); border: 1px solid var(--glass-border);
-      border-radius: 24px; padding: 3.5rem;
-      position: relative;
-      box-shadow: 0 60px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(240,180,41,0.1);
-    }
-    .modal-close {
-      position: absolute; top: 1.5rem; right: 1.5rem;
-      width: 40px; height: 40px; border-radius: 10px;
-      background: var(--glass); border: 1px solid var(--glass-border);
-      color: #fff; font-size: 1rem; cursor: none;
-      display: flex; align-items: center; justify-content: center;
-      transition: all 0.3s;
-    }
-    .modal-close:hover { background: rgba(255,255,255,0.1); }
-    .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-    .modal-tag {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.25em;
-      text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem;
-    }
-    .modal-title {
-      font-size: 2.5rem; font-weight: 800; letter-spacing: -0.04em;
-      color: #fff; margin-bottom: 2rem; line-height: 1;
-    }
-    .modal-section-label {
-      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em;
-      text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 0.75rem; margin-top: 1.5rem;
-    }
-    .modal-text { font-size: 0.9rem; color: var(--slate); line-height: 1.7; }
-    .modal-panel {
-      background: rgba(5,5,10,0.5); border: 1px solid var(--glass-border);
-      border-radius: 16px; padding: 2rem;
-    }
-    .result-row {
-      display: flex; align-items: center; gap: 0.75rem;
-      padding: 0.75rem 0; border-bottom: 1px solid var(--glass-border);
-      font-size: 0.82rem; color: rgba(255,255,255,0.7); font-weight: 500;
-    }
-    .result-row:last-child { border-bottom: none; }
-    .result-row i { color: #34d399; font-size: 0.75rem; }
-
-    /* ——— REVEAL ——— */
     .reveal {
       opacity: 0; transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.23,1,0.32,1), transform 0.8s cubic-bezier(0.23,1,0.32,1);
+      transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-delay-1 { transition-delay: 0.1s; }
     .reveal-delay-2 { transition-delay: 0.2s; }
     .reveal-delay-3 { transition-delay: 0.3s; }
 
-    /* ——— RESPONSIVE ——— */
     @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .process-grid { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
       .hero-card-float { display: none; }
     }
     @media (max-width: 768px) {
@@ -649,91 +638,95 @@
       #hero { padding: 100px 1.25rem 60px; text-align: center; }
       .hero-eyebrow, .hero-actions, .social-strip { justify-content: center; }
       .hero-subtitle { margin: 1.5rem auto 2.5rem; }
-      section { padding: 5rem 1.25rem; }
+      section { padding: 4rem 1.25rem; }
       .about-grid { grid-template-columns: 1fr; }
       .bcard-wide { grid-column: span 1; }
       .projects-grid { grid-template-columns: 1fr; }
-      .edu-grid { grid-template-columns: 1fr; }
-      .contact-inner { padding: 3rem 1.5rem; }
-      .modal-box { padding: 2rem 1.5rem; }
-      .modal-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .process-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .contact-inner { padding: 2.5rem 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
       footer { flex-direction: column; align-items: center; text-align: center; padding: 2rem 1.25rem 4rem; }
       .scroll-hint { display: none; }
     }
     @media (max-width: 480px) {
-      .hero-title { font-size: 2.8rem; }
+      .hero-title { font-size: 2.5rem; }
       .hero-actions { flex-direction: column; align-items: center; }
-      .btn-gold, .btn-ghost { width: 100%; justify-content: center; }
-      .contact-email { width: 100%; justify-content: center; }
+      .btn-gold, .btn-ghost, .contact-email { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- CURSOR -->
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 
-<!-- BG ELEMENTS -->
 <div class="scene-bg"></div>
 <div class="grain"></div>
 <div class="grid-3d"></div>
 <div class="particles" id="particles"></div>
 
-<!-- NAV -->
 <nav id="navbar">
   <div class="nav-logo">
     <div class="logo-mark">S</div>
     <div class="logo-text">
       <div class="logo-name">Samiha Khan</div>
-      <div class="logo-title">Full-Stack Engineer</div>
+      <div class="logo-title">Full-Stack Developer</div>
     </div>
   </div>
   <ul class="nav-links">
-    <li><a href="#stack">Stack</a></li>
+    <li><a href="#services">Services</a></li>
     <li><a href="#projects">Projects</a></li>
-    <li><a href="#education">Education</a></li>
-    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#contact" class="nav-cta">Start a Project</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
-<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#stack" onclick="closeMobile()">Stack</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
   <a href="#projects" onclick="closeMobile()">Projects</a>
-  <a href="#education" onclick="closeMobile()">Education</a>
-  <a href="#contact" onclick="closeMobile()" style="color: var(--gold)">Hire Me →</a>
+  <a href="#process" onclick="closeMobile()">Process</a>
+  <a href="#contact" onclick="closeMobile()" style="color: var(--gold)">Start a Project →</a>
 </div>
 
-<!-- HERO -->
 <section id="hero" style="padding-top:0; padding-bottom:0; min-height:100vh;">
   <div style="max-width:1200px; margin:0 auto; padding: 120px 2rem 80px; position:relative; display:flex; flex-direction:column; justify-content:center; min-height:100vh;">
 
     <div class="hero-eyebrow reveal">
       <span class="ping"><span></span><span></span></span>
-      Available — Laravel & .NET Roles
+      Available for Freelance Projects
     </div>
 
     <h1 class="hero-title reveal reveal-delay-1">
-      Engineering<br>
-      <em>Robust</em><br>
-      Systems.
+      Building Modern<br>
+      <em>Websites &</em><br>
+      Web Applications
     </h1>
 
     <p class="hero-subtitle reveal reveal-delay-2">
-      Junior Full-Stack Developer focused on building scalable backends with <strong>Laravel</strong> and <strong>.NET Core</strong>. Currently pursuing <strong>ADP in Software Engineering</strong> at APTECH, Karachi.
+      I design and develop responsive websites, business platforms and custom web applications — from <strong>development</strong> to <strong>deployment</strong>.
     </p>
 
     <div class="hero-actions reveal reveal-delay-3">
-      <a href="#projects" class="btn-gold">
-        View Projects <i class="fa-solid fa-arrow-right"></i>
+      <a href="#contact" class="btn-gold">
+        Start a Project <i class="fa-solid fa-arrow-right"></i>
       </a>
-      <a href="mailto:samihakhan569@gmail.com" class="btn-ghost">
-        <i class="fa-solid fa-envelope"></i> Get In Touch
+      <a href="#projects" class="btn-ghost">
+        View My Work
       </a>
+    </div>
+
+    <div class="service-badges reveal reveal-delay-3">
+      <span class="badge-slim">Websites</span>
+      <span class="badge-slim">Web Applications</span>
+      <span class="badge-slim">Laravel</span>
+      <span class="badge-slim">Firebase</span>
+      <span class="badge-slim">Deployment</span>
+      <span class="badge-slim">Responsive</span>
     </div>
 
     <div class="social-strip reveal reveal-delay-3">
@@ -744,7 +737,6 @@
       <a href="mailto:samihakhan569@gmail.com" class="social-link" title="Email"><i class="fa-solid fa-envelope"></i></a>
     </div>
 
-    <!-- Floating 3D Card -->
     <div class="hero-card-float">
       <div class="stack-label">// Tech Stack</div>
       <div class="stack-row">
@@ -777,7 +769,7 @@
       </div>
       <div class="availability-badge">
         <span class="avail-dot"></span>
-        Open to new opportunities
+        Open to new projects
       </div>
     </div>
 
@@ -788,11 +780,42 @@
   </div>
 </section>
 
-<!-- STACK / ABOUT -->
-<section id="stack">
+<section id="services">
   <div class="section-inner">
     <div class="reveal">
-      <p class="section-eyebrow">// 01 — Technical Profile</p>
+      <p class="section-eyebrow">// 01 — What I Build</p>
+      <h2 class="section-title">Services <em>& Expertise</em></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon"><i class="fa-solid fa-globe"></i></div>
+        <div class="service-title">Business Websites</div>
+        <div class="service-desc">Modern, responsive websites for businesses, startups and personal brands. Built to convert visitors into customers.</div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon"><i class="fa-solid fa-arrow-rotate-right"></i></div>
+        <div class="service-title">Website Redesign</div>
+        <div class="service-desc">Modernize outdated websites, improve mobile responsiveness and enhance user experience with a fresh, professional look.</div>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon"><i class="fa-solid fa-code"></i></div>
+        <div class="service-title">Custom Web Applications</div>
+        <div class="service-desc">Dashboards, booking systems, management systems, authentication, databases and custom business functionality tailored to your needs.</div>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon"><i class="fa-solid fa-rocket"></i></div>
+        <div class="service-title">Deployment & Maintenance</div>
+        <div class="service-desc">Website deployment, hosting setup, bug fixes, updates and ongoing maintenance to keep your site running smoothly.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-eyebrow">// 02 — Technical Profile</p>
       <h2 class="section-title">Skills & <em>Expertise</em></h2>
       <div class="section-divider"></div>
     </div>
@@ -877,71 +900,75 @@
   </div>
 </section>
 
-<!-- PROJECTS — all 11 projects -->
 <section id="projects">
   <div class="section-inner">
     <div class="reveal">
-      <p class="section-eyebrow">// 02 — Engineering Portfolio</p>
+      <p class="section-eyebrow">// 03 — Portfolio</p>
       <h2 class="section-title">Project <em>Case Studies</em></h2>
       <div class="section-divider"></div>
     </div>
     <div class="projects-grid">
 
-      <!-- 1. Networking Platform -->
-      <div class="proj-card reveal reveal-delay-1" onclick="openModal('networking')">
+      <div class="proj-card reveal reveal-delay-1">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(240,180,41,0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">NET</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
-            <span class="proj-tag" style="color: var(--gold); border-color: rgba(240,180,41,0.2);">Laravel</span>
+            <span class="proj-tag cat">Web Application</span>
+            <span class="proj-tag">Laravel</span>
             <span class="proj-tag">MySQL</span>
-            <span class="proj-tag">Middleware</span>
           </div>
           <div class="proj-title">Networking Platform</div>
           <p class="proj-desc">Secure full-stack communication platform with custom middleware route protection and relational database schema.</p>
         </div>
         <div class="proj-footer">
+          <div class="proj-links">
+            <a href="#" class="proj-link">Live Demo</a>
+            <a href="#" class="proj-link">GitHub</a>
+          </div>
           <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <!-- 2. Restaurant Management -->
-      <div class="proj-card reveal reveal-delay-2" onclick="openModal('restaurant')">
+      <div class="proj-card reveal reveal-delay-2">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">POS</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
-            <span class="proj-tag" style="color: #34d399; border-color: rgba(52,211,153,0.2);">CRUD</span>
+            <span class="proj-tag cat">Management System</span>
+            <span class="proj-tag">CRUD</span>
             <span class="proj-tag">Admin Panel</span>
-            <span class="proj-tag">Order Logic</span>
           </div>
           <div class="proj-title">Restaurant Management</div>
           <p class="proj-desc">End-to-end order tracking with comprehensive admin dashboard for real-time menu and order CRUD management.</p>
         </div>
         <div class="proj-footer">
+          <div class="proj-links">
+            <a href="#" class="proj-link">Live Demo</a>
+            <a href="#" class="proj-link">GitHub</a>
+          </div>
           <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <!-- 3. Pink Salt Web App -->
-      <div class="proj-card reveal reveal-delay-1" onclick="openModal('salt')">
+      <div class="proj-card reveal reveal-delay-1">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(236,72,153,0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">SALT</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
-            <span class="proj-tag" style="color: #f472b6; border-color: rgba(244,114,182,0.2);">Dynamic</span>
+            <span class="proj-tag cat">Web Application</span>
             <span class="proj-tag">Eloquent ORM</span>
             <span class="proj-tag">Auth</span>
           </div>
@@ -949,182 +976,210 @@
           <p class="proj-desc">Dynamic Laravel application with complex 1:M and M:M database relationships, auth integration and advanced admin panel.</p>
         </div>
         <div class="proj-footer">
+          <div class="proj-links">
+            <a href="#" class="proj-link">Live Demo</a>
+            <a href="#" class="proj-link">GitHub</a>
+          </div>
           <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <!-- 4. RESTful API Hub -->
-      <div class="proj-card reveal reveal-delay-2" onclick="openModal('api')">
+      <div class="proj-card reveal reveal-delay-2">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">API</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
-            <span class="proj-tag" style="color: #818cf8; border-color: rgba(129,140,248,0.2);">RESTful</span>
+            <span class="proj-tag cat">API Service</span>
+            <span class="proj-tag">RESTful</span>
             <span class="proj-tag">JWT Auth</span>
-            <span class="proj-tag">Postman</span>
           </div>
           <div class="proj-title">RESTful API Hub</div>
           <p class="proj-desc">Scalable Laravel-backed API layer implementing full CRUD, JWT authentication and rigorous Postman endpoint testing.</p>
         </div>
         <div class="proj-footer">
+          <div class="proj-links">
+            <a href="#" class="proj-link">Live Demo</a>
+            <a href="#" class="proj-link">GitHub</a>
+          </div>
           <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <!-- 5. She Shield (Flutter) -->
-      <div class="proj-card reveal reveal-delay-1" onclick="openModal('sheshield')">
+      <div class="proj-card reveal reveal-delay-1">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.12) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">🛡️</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
-            <span class="proj-tag" style="color: #f43f5e; border-color: rgba(244,63,94,0.3);">Flutter</span>
-            <span class="proj-tag">Dart</span>
+            <span class="proj-tag cat">Mobile App</span>
+            <span class="proj-tag">Flutter</span>
             <span class="proj-tag">Firebase</span>
           </div>
           <div class="proj-title">She Shield — Women Safety</div>
           <p class="proj-desc">Flutter mobile app with real-time location sharing, emergency alerts, and Firebase backend.</p>
         </div>
         <div class="proj-footer">
+          <div class="proj-links">
+            <a href="#" class="proj-link">Live Demo</a>
+            <a href="#" class="proj-link">GitHub</a>
+          </div>
           <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <!-- 6. Bookstore (Flutter + MongoDB) -->
-      <div class="proj-card reveal reveal-delay-2" onclick="openModal('bookstore')">
+      <div class="proj-card reveal reveal-delay-2">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(52, 211, 153, 0.1) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">📚</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
-            <span class="proj-tag" style="color: #34d399; border-color: rgba(52,211,153,0.3);">Flutter</span>
-            <span class="proj-tag">Dart</span>
+            <span class="proj-tag cat">Mobile App</span>
+            <span class="proj-tag">Flutter</span>
             <span class="proj-tag">MongoDB</span>
           </div>
           <div class="proj-title">Bookstore Mobile App</div>
           <p class="proj-desc">Cross-platform book catalog with MongoDB Atlas, search, favorites, and MVVM architecture.</p>
         </div>
         <div class="proj-footer">
+          <div class="proj-links">
+            <a href="#" class="proj-link">Live Demo</a>
+            <a href="#" class="proj-link">GitHub</a>
+          </div>
           <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <!-- 7. Salon Management (PHP) -->
-      <div class="proj-card reveal reveal-delay-1" onclick="openModal('salon')">
+      <div class="proj-card reveal reveal-delay-1">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">💇</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
-            <span class="proj-tag" style="color: #ec4899; border-color: rgba(236,72,153,0.3);">PHP</span>
-            <span class="proj-tag">MySQL</span>
+            <span class="proj-tag cat">Management System</span>
+            <span class="proj-tag">PHP</span>
             <span class="proj-tag">Booking</span>
           </div>
           <div class="proj-title">Salon Management System</div>
           <p class="proj-desc">Complete salon booking and management system built with core PHP, featuring appointment scheduling and client management.</p>
         </div>
         <div class="proj-footer">
+          <div class="proj-links">
+            <a href="#" class="proj-link">Live Demo</a>
+            <a href="#" class="proj-link">GitHub</a>
+          </div>
           <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <!-- 8. Pathseeker Career Guide (Laravel) -->
-      <div class="proj-card reveal reveal-delay-2" onclick="openModal('pathseeker')">
+      <div class="proj-card reveal reveal-delay-2">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">🧭</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
-            <span class="proj-tag" style="color: #3b82f6; border-color: rgba(59,130,246,0.3);">Laravel</span>
-            <span class="proj-tag">PHP</span>
+            <span class="proj-tag cat">Web Application</span>
+            <span class="proj-tag">Laravel</span>
             <span class="proj-tag">Career</span>
           </div>
           <div class="proj-title">Pathseeker Career Guide</div>
           <p class="proj-desc">Laravel-based career guidance platform with personalized roadmaps, quizzes, and resource recommendations.</p>
         </div>
         <div class="proj-footer">
+          <div class="proj-links">
+            <a href="#" class="proj-link">Live Demo</a>
+            <a href="#" class="proj-link">GitHub</a>
+          </div>
           <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <!-- 9. Crystal Website (Static) -->
-      <div class="proj-card reveal reveal-delay-1" onclick="openModal('crystal')">
+      <div class="proj-card reveal reveal-delay-1">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">💎</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
-            <span class="proj-tag" style="color: #a855f7; border-color: rgba(168,85,247,0.3);">HTML</span>
+            <span class="proj-tag cat">Business Website</span>
+            <span class="proj-tag">HTML</span>
             <span class="proj-tag">CSS</span>
-            <span class="proj-tag">JS</span>
           </div>
           <div class="proj-title">Crystal Website</div>
           <p class="proj-desc">Elegant static multi-page website for a crystal shop, built with pure HTML, CSS, and JavaScript.</p>
         </div>
         <div class="proj-footer">
+          <div class="proj-links">
+            <a href="#" class="proj-link">Live Demo</a>
+            <a href="#" class="proj-link">GitHub</a>
+          </div>
           <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <!-- 10. Realstate Management (.NET) -->
-      <div class="proj-card reveal reveal-delay-2" onclick="openModal('realstate')">
+      <div class="proj-card reveal reveal-delay-2">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">🏘️</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
-            <span class="proj-tag" style="color: #fbbf24; border-color: rgba(251,191,36,0.3);">.NET Core</span>
-            <span class="proj-tag">C#</span>
+            <span class="proj-tag cat">Management System</span>
+            <span class="proj-tag">.NET Core</span>
             <span class="proj-tag">SQL Server</span>
           </div>
           <div class="proj-title">Realstate Management</div>
           <p class="proj-desc">Enterprise-grade property management system built with .NET Core, featuring listing, search, and agent dashboards.</p>
         </div>
         <div class="proj-footer">
+          <div class="proj-links">
+            <a href="#" class="proj-link">Live Demo</a>
+            <a href="#" class="proj-link">GitHub</a>
+          </div>
           <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <!-- 11. Portfolio for Friends (static) -->
-      <div class="proj-card reveal reveal-delay-1" onclick="openModal('friendfolio')">
+      <div class="proj-card reveal reveal-delay-1">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">👥</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
+          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
-            <span class="proj-tag" style="color: #f472b6; border-color: rgba(244,114,182,0.3);">HTML</span>
+            <span class="proj-tag cat">Portfolio</span>
+            <span class="proj-tag">HTML</span>
             <span class="proj-tag">CSS</span>
-            <span class="proj-tag">JS</span>
           </div>
           <div class="proj-title">Friend Portfolios (2)</div>
           <p class="proj-desc">Two custom-designed portfolio websites for friends, crafted with modern UI/UX and smooth animations.</p>
         </div>
         <div class="proj-footer">
+          <div class="proj-links">
+            <a href="#" class="proj-link">Live Demo</a>
+            <a href="#" class="proj-link">GitHub</a>
+          </div>
           <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
@@ -1133,75 +1188,163 @@
   </div>
 </section>
 
-<!-- EDUCATION -->
-<section id="education">
+<section id="process">
   <div class="section-inner">
     <div class="reveal">
-      <p class="section-eyebrow">// 03 — Background</p>
-      <h2 class="section-title">Education & <em>Certifications</em></h2>
+      <p class="section-eyebrow">// 04 — How It Works</p>
+      <h2 class="section-title">Simple <em>Process</em></h2>
       <div class="section-divider"></div>
     </div>
-    <div class="edu-grid">
-      <div class="edu-card reveal reveal-delay-1">
-        <div class="edu-icon"><i class="fa-solid fa-laptop-code"></i></div>
-        <div class="edu-year">2023 — Present</div>
-        <div class="edu-degree">ADP in Software Engineering</div>
-        <div class="edu-school">APTECH Computer Education, Karachi</div>
+    <div class="process-grid">
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-num">01</div>
+        <div class="step-title">Discuss</div>
+        <div class="step-desc">We understand your idea, goals and requirements.</div>
       </div>
-      <div class="edu-card reveal reveal-delay-2">
-        <div class="edu-icon"><i class="fa-brands fa-laravel"></i></div>
-        <div class="edu-year">2024</div>
-        <div class="edu-degree">Laravel Full-Stack Development</div>
-        <div class="edu-school">Hands-on: MVC, Auth, Eloquent ORM, APIs</div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-num">02</div>
+        <div class="step-title">Plan</div>
+        <div class="step-desc">We define the features, structure and technology.</div>
       </div>
-      <div class="edu-card reveal reveal-delay-1">
-        <div class="edu-icon"><i class="fa-solid fa-server"></i></div>
-        <div class="edu-year">2024</div>
-        <div class="edu-degree">.NET Core & Angular</div>
-        <div class="edu-school">Enterprise-grade backend + SPA frontend</div>
+      <div class="process-step reveal reveal-delay-1">
+        <div class="step-num">03</div>
+        <div class="step-title">Build</div>
+        <div class="step-desc">The website/application is developed and tested.</div>
       </div>
-      <div class="edu-card reveal reveal-delay-2">
-        <div class="edu-icon"><i class="fa-solid fa-database"></i></div>
-        <div class="edu-year">2023 — 2024</div>
-        <div class="edu-degree">Database Architecture</div>
-        <div class="edu-school">MySQL · SQL Server · MongoDB · Relational Design</div>
+      <div class="process-step reveal reveal-delay-2">
+        <div class="step-num">04</div>
+        <div class="step-title">Launch</div>
+        <div class="step-desc">The final product is deployed and ready to use.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
+<section id="why">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-eyebrow">// 05 — Why Work With Me</p>
+      <h2 class="section-title">Built to <em>Deliver</em></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal reveal-delay-1">
+        <div class="why-icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+        <div class="why-title">Responsive & Mobile-First</div>
+        <div class="why-desc">Every project is built to look great on all devices from day one.</div>
+      </div>
+      <div class="why-item reveal reveal-delay-2">
+        <div class="why-icon"><i class="fa-solid fa-palette"></i></div>
+        <div class="why-title">Modern UI/UX</div>
+        <div class="why-desc">Clean, professional designs that users love and clients are proud of.</div>
+      </div>
+      <div class="why-item reveal reveal-delay-1">
+        <div class="why-icon"><i class="fa-solid fa-layer-group"></i></div>
+        <div class="why-title">Full-Stack Development</div>
+        <div class="why-desc">From database to frontend — I handle the entire stack.</div>
+      </div>
+      <div class="why-item reveal reveal-delay-2">
+        <div class="why-icon"><i class="fa-solid fa-server"></i></div>
+        <div class="why-title">Laravel & .NET</div>
+        <div class="why-desc">Expertise in two powerful backend frameworks for robust applications.</div>
+      </div>
+      <div class="why-item reveal reveal-delay-1">
+        <div class="why-icon"><i class="fa-solid fa-cloud"></i></div>
+        <div class="why-title">Deployment & Hosting</div>
+        <div class="why-desc">Full deployment support to get your project live.</div>
+      </div>
+      <div class="why-item reveal reveal-delay-2">
+        <div class="why-icon"><i class="fa-solid fa-database"></i></div>
+        <div class="why-title">Database Integration</div>
+        <div class="why-desc">MySQL, SQL Server, MongoDB — I work with your data.</div>
+      </div>
+      <div class="why-item reveal reveal-delay-1">
+        <div class="why-icon"><i class="fa-solid fa-code"></i></div>
+        <div class="why-title">API Development</div>
+        <div class="why-desc">Custom RESTful APIs for your business logic and integrations.</div>
+      </div>
+      <div class="why-item reveal reveal-delay-2">
+        <div class="why-icon"><i class="fa-solid fa-gear"></i></div>
+        <div class="why-title">Ongoing Maintenance</div>
+        <div class="why-desc">Bug fixes, updates and support to keep your site running smoothly.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="contact">
   <div class="contact-inner reveal">
-    <p class="section-eyebrow" style="margin-bottom: 1rem;">// 04 — Let's Work Together</p>
-    <h2 class="contact-title">Ready to Build<br><em>Something Great?</em></h2>
-    <p class="contact-desc">Open to remote roles, freelance projects, and full-time opportunities in Laravel, .NET, and Flutter development.</p>
-    <a href="mailto:samihakhan569@gmail.com" class="contact-email">
-      <i class="fa-solid fa-paper-plane"></i>
-      samihakhan569@gmail.com
-    </a>
+    <p class="section-eyebrow" style="margin-bottom: 1rem;">// 06 — Let's Build Something Useful</p>
+    <h2 class="contact-title">Have a project <br><em>in mind?</em></h2>
+    <p class="contact-desc">Let's turn your idea into a working website or web application. Tell me about your project and I'll get back to you.</p>
+
+    <form class="contact-form" id="contactForm">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="projectType">Project Type</label>
+          <select id="projectType" name="projectType">
+            <option>Business Website</option>
+            <option>Landing Page</option>
+            <option>Website Redesign</option>
+            <option>E-Commerce</option>
+            <option>Custom Web Application</option>
+            <option>Laravel Application</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="budget">Budget Range</label>
+          <select id="budget" name="budget">
+            <option>Under $100</option>
+            <option>$100–$300</option>
+            <option>$300–$500</option>
+            <option>$500+</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="message">Project Description</label>
+        <textarea id="message" name="message" placeholder="Describe your project, goals and any specific requirements..."></textarea>
+      </div>
+      <button type="submit" class="contact-email" style="width:100%; justify-content:center;" id="submitBtn">
+        <i class="fa-solid fa-paper-plane"></i> Send Inquiry
+      </button>
+    </form>
+
     <div class="contact-socials">
       <a href="https://github.com/Samiha-png" class="social-link" target="_blank"><i class="fa-brands fa-github"></i></a>
       <a href="https://linkedin.com/in/samiha-khan-b606a12ba" class="social-link" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
-      <a href="https://contra.com/samiha_khan_8jrb7mla/work?r=samiha_khan_8jrb7mla" class="social-link" target="_blank"><i class="fa-solid fa-bolt"></i></a>
+      <a href="mailto:samihakhan569@gmail.com" class="social-link"><i class="fa-solid fa-envelope"></i></a>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-copy">© 2025 Samiha Khan — Built with intention.</div>
+  <div class="footer-copy">© 2025 Samiha Khan — Freelance Full-Stack Developer</div>
   <div class="footer-clock" id="clock">00:00:00 PKT</div>
 </footer>
 
-<!-- MODAL -->
-<div class="modal-backdrop" id="modal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
-    <div id="modalContent"></div>
-  </div>
-</div>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+  // ——— INITIALIZE EMAILJS WITH YOUR API KEY ———
+  (function() {
+    emailjs.init({
+      publicKey: "jG7HLD--Roq0pm_D4", // Your API Key
+    });
+  })();
 
-<script>
   // ——— CURSOR ———
   const dot = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
@@ -1214,7 +1357,7 @@
     requestAnimationFrame(animCursor);
   }
   animCursor();
-  document.querySelectorAll('a, button, .proj-card, .bcard, .edu-card').forEach(el => {
+  document.querySelectorAll('a, button, .proj-card, .bcard, .service-card, .edu-card, .why-item').forEach(el => {
     el.addEventListener('mouseenter', () => { dot.style.transform = 'translate(-50%,-50%) scale(2.5)'; ring.style.transform = 'translate(-50%,-50%) scale(1.4)'; ring.style.borderColor = 'var(--gold)'; });
     el.addEventListener('mouseleave', () => { dot.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.borderColor = 'rgba(240,180,41,0.6)'; });
   });
@@ -1272,121 +1415,9 @@
   }
   setInterval(tick, 1000); tick();
 
-  // ——— MODAL DATA (all 11 projects) ———
-  const projects = {
-    networking: {
-      tag: 'Full-Stack Laravel', title: 'Networking Platform',
-      context: 'The need for a secure internal communication system with controlled access, requiring robust authentication and a clean relational data model.',
-      solution: 'Engineered a full-stack platform using Laravel\'s MVC architecture. Implemented custom middleware for granular route protection and a normalized MySQL schema for efficient data relationships.',
-      tech: ['Laravel', 'PHP', 'MySQL', 'Middleware', 'MVC'],
-      results: ['Secure Authentication System', 'Custom Middleware Protection', 'Relational Database Schema', 'Clean MVC Architecture']
-    },
-    restaurant: {
-      tag: 'Admin & Order System', title: 'Restaurant Management',
-      context: 'Inefficient order tracking, manual menu updates and no central admin visibility creating operational bottlenecks.',
-      solution: 'Developed an end-to-end management system with a comprehensive admin dashboard. Implemented real-time CRUD operations for menu items, order tracking and data validation workflows.',
-      tech: ['Laravel', 'PHP', 'JavaScript', 'SQL Server', 'Bootstrap'],
-      results: ['Real-time CRUD Operations', 'Admin Dashboard', 'Order Tracking System', 'Input Validation Workflows']
-    },
-    salt: {
-      tag: 'Dynamic Web Application', title: 'Pink Salt Web App',
-      context: 'Managing complex multi-level inventory data requiring sophisticated database relationships and an intuitive administrative interface.',
-      solution: 'Built a dynamic Laravel application focusing on Eloquent ORM relationships (1:Many, Many:Many). Integrated a fully-featured admin panel with role-based access and database schema optimization.',
-      tech: ['Laravel', 'MySQL', 'Eloquent ORM', 'PHP', 'Auth'],
-      results: ['1:M & M:M DB Relationships', 'Auth Integration', 'Admin Panel', 'Schema Optimization']
-    },
-    api: {
-      tag: 'Backend API Service', title: 'RESTful API Hub',
-      context: 'Lack of standardized, secure endpoints for external service consumption and mobile client integration.',
-      solution: 'Developed a comprehensive RESTful API layer using Laravel. Implemented JWT authentication, full CRUD endpoint coverage, and rigorous testing via Postman with documented collections.',
-      tech: ['Laravel', 'JWT', 'Postman', 'JSON', 'PHP'],
-      results: ['JWT Authentication', 'Full CRUD Endpoints', 'Postman Test Suite', 'Standardized Responses']
-    },
-    sheshield: {
-      tag: 'Mobile App — Flutter', title: 'She Shield',
-      context: 'Women safety is a critical concern. Existing solutions lacked real-time location sharing and a seamless emergency alert system.',
-      solution: 'Built a Flutter app with Firebase backend. Integrated real-time location tracking, one-tap SOS alerts, and a secure user authentication system.',
-      tech: ['Flutter', 'Dart', 'Firebase', 'Google Maps API'],
-      results: ['Real-time Location Sharing', 'SOS Alert System', 'Firebase Authentication', 'Cross-platform (iOS & Android)']
-    },
-    bookstore: {
-      tag: 'Mobile App — Flutter + MongoDB', title: 'Bookstore App',
-      context: 'Book lovers need a clean, fast, and offline-capable catalog with search and favorites management.',
-      solution: 'Developed a cross-platform Flutter app connected to MongoDB Atlas. Implemented MVVM architecture, search, and bookmark features.',
-      tech: ['Flutter', 'Dart', 'MongoDB Atlas', 'MVVM'],
-      results: ['MongoDB Integration', 'Search & Filter', 'Favorites Persistence', 'Responsive UI']
-    },
-    salon: {
-      tag: 'PHP Management System', title: 'Salon Management',
-      context: 'Salon owners needed a simple, reliable system to manage appointments, staff, and customer data without complex overhead.',
-      solution: 'Built a core PHP application with MySQL. Features include appointment booking, client management, service catalog, and daily reports.',
-      tech: ['PHP', 'MySQL', 'Bootstrap', 'JavaScript'],
-      results: ['Appointment Scheduling', 'Client Database', 'Service Management', 'Daily Reports']
-    },
-    pathseeker: {
-      tag: 'Laravel Career Guide', title: 'Pathseeker Career Guide',
-      context: 'Students and professionals often struggle to find the right career path. A personalized guidance system was needed.',
-      solution: 'Developed a Laravel platform with interactive quizzes, career roadmaps, and curated resource recommendations based on user profiles.',
-      tech: ['Laravel', 'PHP', 'MySQL', 'Tailwind CSS'],
-      results: ['Personalized Quizzes', 'Career Roadmaps', 'Resource Library', 'User Progress Tracking']
-    },
-    crystal: {
-      tag: 'Static Website', title: 'Crystal Website',
-      context: 'A crystal shop needed an elegant, fast-loading online presence to showcase products and brand identity.',
-      solution: 'Designed and built a fully responsive multi-page static website using HTML5, CSS3, and vanilla JavaScript with smooth animations.',
-      tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design'],
-      results: ['Fast Loading', 'Responsive Layout', 'Smooth Animations', 'Product Gallery']
-    },
-    realstate: {
-      tag: '.NET Core Enterprise', title: 'Realstate Management',
-      context: 'Real estate agencies require a robust system to manage properties, clients, and agent workflows efficiently.',
-      solution: 'Engineered a comprehensive .NET Core application with SQL Server. Features include property listing, search filters, agent dashboards, and client management.',
-      tech: ['.NET Core', 'C#', 'SQL Server', 'REST API'],
-      results: ['Property Management', 'Advanced Search', 'Agent Dashboards', 'Client CRM']
-    },
-    friendfolio: {
-      tag: 'Custom Portfolios', title: 'Friend Portfolios (2)',
-      context: 'Two friends needed personal portfolio websites to showcase their work and skills with a modern, unique design.',
-      solution: 'Designed two distinct portfolio websites with custom layouts, animations, and interactive elements using HTML, CSS, and JavaScript.',
-      tech: ['HTML5', 'CSS3', 'JavaScript', 'GSAP'],
-      results: ['Custom Design', 'Smooth Animations', 'Fully Responsive', 'Unique Branding']
-    }
-  };
-
-  function openModal(id) {
-    const d = projects[id];
-    document.getElementById('modalContent').innerHTML = `
-      <div class="modal-grid">
-        <div>
-          <div class="modal-tag">${d.tag}</div>
-          <div class="modal-title">${d.title}</div>
-          <div class="modal-section-label">The Problem</div>
-          <p class="modal-text">${d.context}</p>
-          <div class="modal-section-label">The Solution</div>
-          <p class="modal-text">${d.solution}</p>
-          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.5rem;">
-            ${d.tech.map(t => `<span class="skill-tag" style="font-size:0.7rem;">${t}</span>`).join('')}
-          </div>
-        </div>
-        <div class="modal-panel">
-          <div class="modal-section-label" style="margin-top:0;">Key Outcomes</div>
-          ${d.results.map(r => `<div class="result-row"><i class="fa-solid fa-circle-check"></i> ${r}</div>`).join('')}
-        </div>
-      </div>
-    `;
-    document.getElementById('modal').classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeModal() {
-    document.getElementById('modal').classList.remove('open');
-    document.body.style.overflow = '';
-  }
-  document.getElementById('modal').addEventListener('click', e => { if (e.target === document.getElementById('modal')) closeModal(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
-
   // ——— TILT EFFECT ———
   if (window.innerWidth > 768) {
-    document.querySelectorAll('.bcard, .proj-card, .edu-card').forEach(card => {
+    document.querySelectorAll('.bcard, .proj-card, .service-card, .edu-card, .why-item').forEach(card => {
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
@@ -1398,6 +1429,33 @@
       });
     });
   }
+
+  // ——— CONTACT FORM HANDLING WITH EMAILJS ———
+  document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const btn = document.getElementById('submitBtn');
+    const originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
+    btn.disabled = true;
+
+    // Your EmailJS credentials
+    const serviceID = 'service_dv927fr'; // Your Service ID
+    const templateID = 'template_8xy2pbg'; // 👈 REPLACE THIS with your Template ID from EmailJS
+
+    emailjs.sendForm(serviceID, templateID, this)
+      .then(function() {
+        alert('✅ Message sent successfully! I\'ll get back to you within 24 hours.');
+        document.getElementById('contactForm').reset();
+      }, function(error) {
+        alert('❌ Oops! Something went wrong. Please try again or email me directly at samihakhan569@gmail.com');
+        console.error('EmailJS Error:', error);
+      })
+      .finally(function() {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      });
+  });
 </script>
 </body>
 </html>
