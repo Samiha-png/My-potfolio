@@ -455,9 +455,12 @@
     }
     .proj-card {
       background: var(--card); border: 1px solid var(--glass-border);
-      border-radius: 20px; overflow: hidden;
-      cursor: none; transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-      transform-style: preserve-3d; position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+      position: relative;
     }
     .proj-card:hover { border-color: rgba(240,180,41,0.3); transform: translateY(-8px) rotateX(2deg); box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
     .proj-visual {
@@ -524,13 +527,72 @@
     }
     .proj-link:hover { color: #fff; border-color: rgba(255,255,255,0.2); }
     .proj-arrow {
-      width: 32px; height: 32px; border-radius: 8px;
-      background: var(--gold-dim); border: 1px solid rgba(240,180,41,0.2);
-      display: flex; align-items: center; justify-content: center;
-      color: var(--gold); font-size: 0.7rem;
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      background: var(--gold-dim);
+      border: 1px solid rgba(240,180,41,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-size: 0.7rem;
       transition: all 0.3s;
+      cursor: pointer;
     }
     .proj-card:hover .proj-arrow { background: var(--gold); color: #000; transform: rotate(45deg); }
+
+    /* ——— MODAL ——— */
+    .modal-backdrop {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(5,5,10,0.97); backdrop-filter: blur(30px);
+      display: none; align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal-box {
+      width: 100%; max-width: 900px; max-height: 90vh; overflow-y: auto;
+      background: rgba(14,16,28,0.95); border: 1px solid var(--glass-border);
+      border-radius: 24px; padding: 3.5rem;
+      position: relative;
+      box-shadow: 0 60px 120px rgba(0,0,0,0.8), 0 0 0 1px rgba(240,180,41,0.1);
+    }
+    .modal-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      color: #fff; font-size: 1rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.3s;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.1); }
+    .modal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .modal-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem; font-weight: 600; letter-spacing: 0.25em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .modal-title {
+      font-size: 2.5rem; font-weight: 800; letter-spacing: -0.04em;
+      color: #fff; margin-bottom: 2rem; line-height: 1;
+    }
+    .modal-section-label {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.25em;
+      text-transform: uppercase; color: rgba(255,255,255,0.3);
+      margin-bottom: 0.75rem; margin-top: 1.5rem;
+    }
+    .modal-text { font-size: 0.9rem; color: var(--slate); line-height: 1.7; }
+    .modal-panel {
+      background: rgba(5,5,10,0.5); border: 1px solid var(--glass-border);
+      border-radius: 16px; padding: 2rem;
+    }
+    .result-row {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.75rem 0; border-bottom: 1px solid var(--glass-border);
+      font-size: 0.82rem; color: rgba(255,255,255,0.7); font-weight: 500;
+    }
+    .result-row:last-child { border-bottom: none; }
+    .result-row i { color: #34d399; font-size: 0.75rem; }
 
     .why-grid {
       display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem;
@@ -592,7 +654,7 @@
       font-size: 0.85rem; font-weight: 800; letter-spacing: 0.05em;
       border-radius: 14px; text-decoration: none;
       box-shadow: 0 0 60px rgba(240,180,41,0.25);
-      transition: all 0.3s; border: none; cursor: none;
+      transition: all 0.3s; border: none; cursor: pointer;
       width: fit-content; margin: 0 auto;
     }
     .contact-email:hover { transform: translateY(-3px); box-shadow: 0 10px 60px rgba(240,180,41,0.45); }
@@ -649,6 +711,9 @@
       .form-row { grid-template-columns: 1fr; }
       footer { flex-direction: column; align-items: center; text-align: center; padding: 2rem 1.25rem 4rem; }
       .scroll-hint { display: none; }
+      .modal-box { padding: 2rem 1.5rem; }
+      .modal-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .modal-title { font-size: 2rem; }
     }
     @media (max-width: 480px) {
       .hero-title { font-size: 2.5rem; }
@@ -909,12 +974,12 @@
     </div>
     <div class="projects-grid">
 
-      <div class="proj-card reveal reveal-delay-1">
+      <div class="proj-card reveal reveal-delay-1" onclick="openModal('networking')">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(240,180,41,0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">NET</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -930,16 +995,16 @@
             <a href="#" class="proj-link">Live Demo</a>
             <a href="#" class="proj-link">GitHub</a>
           </div>
-          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="proj-arrow" onclick="event.stopPropagation(); openModal('networking')"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <div class="proj-card reveal reveal-delay-2">
+      <div class="proj-card reveal reveal-delay-2" onclick="openModal('restaurant')">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">POS</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -955,16 +1020,16 @@
             <a href="#" class="proj-link">Live Demo</a>
             <a href="#" class="proj-link">GitHub</a>
           </div>
-          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="proj-arrow" onclick="event.stopPropagation(); openModal('restaurant')"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <div class="proj-card reveal reveal-delay-1">
+      <div class="proj-card reveal reveal-delay-1" onclick="openModal('salt')">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(236,72,153,0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">SALT</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -980,16 +1045,16 @@
             <a href="#" class="proj-link">Live Demo</a>
             <a href="#" class="proj-link">GitHub</a>
           </div>
-          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="proj-arrow" onclick="event.stopPropagation(); openModal('salt')"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <div class="proj-card reveal reveal-delay-2">
+      <div class="proj-card reveal reveal-delay-2" onclick="openModal('api')">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(99,102,241,0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">API</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -1005,16 +1070,16 @@
             <a href="#" class="proj-link">Live Demo</a>
             <a href="#" class="proj-link">GitHub</a>
           </div>
-          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="proj-arrow" onclick="event.stopPropagation(); openModal('api')"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <div class="proj-card reveal reveal-delay-1">
+      <div class="proj-card reveal reveal-delay-1" onclick="openModal('sheshield')">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.12) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">🛡️</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -1030,16 +1095,16 @@
             <a href="#" class="proj-link">Live Demo</a>
             <a href="#" class="proj-link">GitHub</a>
           </div>
-          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="proj-arrow" onclick="event.stopPropagation(); openModal('sheshield')"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <div class="proj-card reveal reveal-delay-2">
+      <div class="proj-card reveal reveal-delay-2" onclick="openModal('bookstore')">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(52, 211, 153, 0.1) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">📚</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -1055,16 +1120,16 @@
             <a href="#" class="proj-link">Live Demo</a>
             <a href="#" class="proj-link">GitHub</a>
           </div>
-          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="proj-arrow" onclick="event.stopPropagation(); openModal('bookstore')"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <div class="proj-card reveal reveal-delay-1">
+      <div class="proj-card reveal reveal-delay-1" onclick="openModal('salon')">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">💇</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -1080,16 +1145,16 @@
             <a href="#" class="proj-link">Live Demo</a>
             <a href="#" class="proj-link">GitHub</a>
           </div>
-          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="proj-arrow" onclick="event.stopPropagation(); openModal('salon')"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <div class="proj-card reveal reveal-delay-2">
+      <div class="proj-card reveal reveal-delay-2" onclick="openModal('pathseeker')">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">🧭</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -1105,16 +1170,16 @@
             <a href="#" class="proj-link">Live Demo</a>
             <a href="#" class="proj-link">GitHub</a>
           </div>
-          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="proj-arrow" onclick="event.stopPropagation(); openModal('pathseeker')"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <div class="proj-card reveal reveal-delay-1">
+      <div class="proj-card reveal reveal-delay-1" onclick="openModal('crystal')">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">💎</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -1130,16 +1195,16 @@
             <a href="#" class="proj-link">Live Demo</a>
             <a href="#" class="proj-link">GitHub</a>
           </div>
-          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="proj-arrow" onclick="event.stopPropagation(); openModal('crystal')"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <div class="proj-card reveal reveal-delay-2">
+      <div class="proj-card reveal reveal-delay-2" onclick="openModal('realstate')">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(251, 191, 36, 0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">🏘️</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -1155,16 +1220,16 @@
             <a href="#" class="proj-link">Live Demo</a>
             <a href="#" class="proj-link">GitHub</a>
           </div>
-          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="proj-arrow" onclick="event.stopPropagation(); openModal('realstate')"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
-      <div class="proj-card reveal reveal-delay-1">
+      <div class="proj-card reveal reveal-delay-1" onclick="openModal('friendfolio')">
         <div class="proj-visual">
           <div class="proj-bg" style="background: linear-gradient(135deg, rgba(236, 72, 153, 0.08) 0%, rgba(10,10,20,1) 70%);">
             <span class="proj-code">👥</span>
           </div>
-          <div class="proj-overlay"><div class="proj-cta">Example Project</div></div>
+          <div class="proj-overlay"><div class="proj-cta">View Case Study</div></div>
         </div>
         <div class="proj-body">
           <div class="proj-tags">
@@ -1180,7 +1245,7 @@
             <a href="#" class="proj-link">Live Demo</a>
             <a href="#" class="proj-link">GitHub</a>
           </div>
-          <div class="proj-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+          <div class="proj-arrow" onclick="event.stopPropagation(); openModal('friendfolio')"><i class="fa-solid fa-arrow-right"></i></div>
         </div>
       </div>
 
@@ -1335,13 +1400,160 @@
   <div class="footer-clock" id="clock">00:00:00 PKT</div>
 </footer>
 
+<!-- MODAL -->
+<div class="modal-backdrop" id="modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()"><i class="fa-solid fa-xmark"></i></button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
 </script>
 <script type="text/javascript">
-  // ——— INITIALIZE EMAILJS WITH YOUR API KEY ———
+  // ——— MODAL DATA ———
+  const modalData = {
+    networking: {
+      tag: 'Full-Stack Laravel',
+      title: 'Networking Platform',
+      context: 'The need for a secure internal communication system with controlled access, requiring robust authentication and a clean relational data model.',
+      solution: 'Engineered a full-stack platform using Laravel\'s MVC architecture. Implemented custom middleware for granular route protection and a normalized MySQL schema for efficient data relationships.',
+      tech: ['Laravel', 'PHP', 'MySQL', 'Middleware', 'MVC'],
+      results: ['Secure Authentication System', 'Custom Middleware Protection', 'Relational Database Schema', 'Clean MVC Architecture']
+    },
+    restaurant: {
+      tag: 'Admin & Order System',
+      title: 'Restaurant Management',
+      context: 'Inefficient order tracking, manual menu updates and no central admin visibility creating operational bottlenecks.',
+      solution: 'Developed an end-to-end management system with a comprehensive admin dashboard. Implemented real-time CRUD operations for menu items, order tracking and data validation workflows.',
+      tech: ['Laravel', 'PHP', 'JavaScript', 'SQL Server', 'Bootstrap'],
+      results: ['Real-time CRUD Operations', 'Admin Dashboard', 'Order Tracking System', 'Input Validation Workflows']
+    },
+    salt: {
+      tag: 'Dynamic Web Application',
+      title: 'Pink Salt Web App',
+      context: 'Managing complex multi-level inventory data requiring sophisticated database relationships and an intuitive administrative interface.',
+      solution: 'Built a dynamic Laravel application focusing on Eloquent ORM relationships (1:Many, Many:Many). Integrated a fully-featured admin panel with role-based access and database schema optimization.',
+      tech: ['Laravel', 'MySQL', 'Eloquent ORM', 'PHP', 'Auth'],
+      results: ['1:M & M:M DB Relationships', 'Auth Integration', 'Admin Panel', 'Schema Optimization']
+    },
+    api: {
+      tag: 'Backend API Service',
+      title: 'RESTful API Hub',
+      context: 'Lack of standardized, secure endpoints for external service consumption and mobile client integration.',
+      solution: 'Developed a comprehensive RESTful API layer using Laravel. Implemented JWT authentication, full CRUD endpoint coverage, and rigorous testing via Postman with documented collections.',
+      tech: ['Laravel', 'JWT', 'Postman', 'JSON', 'PHP'],
+      results: ['JWT Authentication', 'Full CRUD Endpoints', 'Postman Test Suite', 'Standardized Responses']
+    },
+    sheshield: {
+      tag: 'Mobile App — Flutter',
+      title: 'She Shield',
+      context: 'Women safety is a critical concern. Existing solutions lacked real-time location sharing and a seamless emergency alert system.',
+      solution: 'Built a Flutter app with Firebase backend. Integrated real-time location tracking, one-tap SOS alerts, and a secure user authentication system.',
+      tech: ['Flutter', 'Dart', 'Firebase', 'Google Maps API'],
+      results: ['Real-time Location Sharing', 'SOS Alert System', 'Firebase Authentication', 'Cross-platform (iOS & Android)']
+    },
+    bookstore: {
+      tag: 'Mobile App — Flutter + MongoDB',
+      title: 'Bookstore App',
+      context: 'Book lovers need a clean, fast, and offline-capable catalog with search and favorites management.',
+      solution: 'Developed a cross-platform Flutter app connected to MongoDB Atlas. Implemented MVVM architecture, search, and bookmark features.',
+      tech: ['Flutter', 'Dart', 'MongoDB Atlas', 'MVVM'],
+      results: ['MongoDB Integration', 'Search & Filter', 'Favorites Persistence', 'Responsive UI']
+    },
+    salon: {
+      tag: 'PHP Management System',
+      title: 'Salon Management',
+      context: 'Salon owners needed a simple, reliable system to manage appointments, staff, and customer data without complex overhead.',
+      solution: 'Built a core PHP application with MySQL. Features include appointment booking, client management, service catalog, and daily reports.',
+      tech: ['PHP', 'MySQL', 'Bootstrap', 'JavaScript'],
+      results: ['Appointment Scheduling', 'Client Database', 'Service Management', 'Daily Reports']
+    },
+    pathseeker: {
+      tag: 'Laravel Career Guide',
+      title: 'Pathseeker Career Guide',
+      context: 'Students and professionals often struggle to find the right career path. A personalized guidance system was needed.',
+      solution: 'Developed a Laravel platform with interactive quizzes, career roadmaps, and curated resource recommendations based on user profiles.',
+      tech: ['Laravel', 'PHP', 'MySQL', 'Tailwind CSS'],
+      results: ['Personalized Quizzes', 'Career Roadmaps', 'Resource Library', 'User Progress Tracking']
+    },
+    crystal: {
+      tag: 'Static Website',
+      title: 'Crystal Website',
+      context: 'A crystal shop needed an elegant, fast-loading online presence to showcase products and brand identity.',
+      solution: 'Designed and built a fully responsive multi-page static website using HTML5, CSS3, and vanilla JavaScript with smooth animations.',
+      tech: ['HTML5', 'CSS3', 'JavaScript', 'Responsive Design'],
+      results: ['Fast Loading', 'Responsive Layout', 'Smooth Animations', 'Product Gallery']
+    },
+    realstate: {
+      tag: '.NET Core Enterprise',
+      title: 'Realstate Management',
+      context: 'Real estate agencies require a robust system to manage properties, clients, and agent workflows efficiently.',
+      solution: 'Engineered a comprehensive .NET Core application with SQL Server. Features include property listing, search filters, agent dashboards, and client management.',
+      tech: ['.NET Core', 'C#', 'SQL Server', 'REST API'],
+      results: ['Property Management', 'Advanced Search', 'Agent Dashboards', 'Client CRM']
+    },
+    friendfolio: {
+      tag: 'Custom Portfolios',
+      title: 'Friend Portfolios (2)',
+      context: 'Two friends needed personal portfolio websites to showcase their work and skills with a modern, unique design.',
+      solution: 'Designed two distinct portfolio websites with custom layouts, animations, and interactive elements using HTML, CSS, and JavaScript.',
+      tech: ['HTML5', 'CSS3', 'JavaScript', 'GSAP'],
+      results: ['Custom Design', 'Smooth Animations', 'Fully Responsive', 'Unique Branding']
+    }
+  };
+
+  // ——— MODAL FUNCTIONS ———
+  function openModal(id) {
+    const data = modalData[id];
+    if (!data) {
+      console.error('Project data not found for:', id);
+      return;
+    }
+
+    const modalContent = document.getElementById('modalContent');
+    modalContent.innerHTML = `
+      <div class="modal-grid">
+        <div>
+          <div class="modal-tag">${data.tag}</div>
+          <div class="modal-title">${data.title}</div>
+          <div class="modal-section-label">The Problem</div>
+          <p class="modal-text">${data.context}</p>
+          <div class="modal-section-label">The Solution</div>
+          <p class="modal-text">${data.solution}</p>
+          <div style="display:flex; flex-wrap:wrap; gap:0.5rem; margin-top:1.5rem;">
+            ${data.tech.map(t => `<span class="skill-tag" style="font-size:0.7rem;">${t}</span>`).join('')}
+          </div>
+        </div>
+        <div class="modal-panel">
+          <div class="modal-section-label" style="margin-top:0;">Key Outcomes</div>
+          ${data.results.map(r => `<div class="result-row"><i class="fa-solid fa-circle-check"></i> ${r}</div>`).join('')}
+        </div>
+      </div>
+    `;
+
+    document.getElementById('modal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ——— MODAL EVENT LISTENERS ———
+  document.getElementById('modal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // ——— INITIALIZE EMAILJS ———
   (function() {
     emailjs.init({
-      publicKey: "jG7HLD--Roq0pm_D4", // Your API Key
+      publicKey: "jG7HLD--Roq0pm_D4",
     });
   })();
 
@@ -1357,7 +1569,7 @@
     requestAnimationFrame(animCursor);
   }
   animCursor();
-  document.querySelectorAll('a, button, .proj-card, .bcard, .service-card, .edu-card, .why-item').forEach(el => {
+  document.querySelectorAll('a, button, .proj-card, .bcard, .service-card, .why-item').forEach(el => {
     el.addEventListener('mouseenter', () => { dot.style.transform = 'translate(-50%,-50%) scale(2.5)'; ring.style.transform = 'translate(-50%,-50%) scale(1.4)'; ring.style.borderColor = 'var(--gold)'; });
     el.addEventListener('mouseleave', () => { dot.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.borderColor = 'rgba(240,180,41,0.6)'; });
   });
@@ -1417,7 +1629,7 @@
 
   // ——— TILT EFFECT ———
   if (window.innerWidth > 768) {
-    document.querySelectorAll('.bcard, .proj-card, .service-card, .edu-card, .why-item').forEach(card => {
+    document.querySelectorAll('.bcard, .proj-card, .service-card, .why-item').forEach(card => {
       card.addEventListener('mousemove', e => {
         const r = card.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
@@ -1439,9 +1651,8 @@
     btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending...';
     btn.disabled = true;
 
-    // Your EmailJS credentials
-    const serviceID = 'service_dv927fr'; // Your Service ID
-    const templateID = 'template_8xy2pbg'; // 👈 REPLACE THIS with your Template ID from EmailJS
+    const serviceID = 'service_dv927fr';
+    const templateID = 'template_8xy2pbg';
 
     emailjs.sendForm(serviceID, templateID, this)
       .then(function() {
